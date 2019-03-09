@@ -19,23 +19,25 @@
 %\newcommand{\doctype}{Dokumentacja} %etap III
 
 %wpisz nazwę projektu
-\newcommand{\projectname}{Nazwa projektu}
+\newcommand{\projectname}{Humanistycznie upośledzony robot akrobatyczny}
 
 %wpisz akronim projektu
-\newcommand{\acronim}{Akronim lub skr\'{o}t}
+\newcommand{\acronim}{HURA}
 
 %wpisz Imię i nazwisko oraz numer albumu
-\newcommand{\osobaA}{Adam \textsc{Babacki}, 123456}
+\newcommand{\osobaA}{Albert \textsc{Lis}, 235534}
 %w przypadku projektu jednoosobowego usuń zawartość nowej komendy
-\newcommand{\osobaB}{Bart\l{}omiej \textsc{Cabacki}, 123457}
+\newcommand{\osobaB}{Michał \textsc{Moruń}, XXX}
 
 %wpisz termin w formie, jak poniżej dzień, parzystość, godzina
-\newcommand{\termin}{srTP13}
+\newcommand{\termin}{srTP15 ???}
 
 %wpisz imię i nazwisko prowadzącego
 \newcommand{\prowadzacy}{mgr in\.{z}. Wojciech \textsc{Domski}}
 
 \documentclass[10pt, a4paper]{article}
+
+\usepackage[usenames,dvipsnames]{xcolor}
 
 \include{preambula}
 	
@@ -76,11 +78,18 @@
 \newpage
 
 %Obecne we wszystkich dokumentach
+\textcolor{Red}{To musi się znaleźć:} \newline
+\textcolor{Red}{k1 in [0,1.0] — poprawne opracowanie dokumentu w systemie składania tekstu LaTeX, wykorzystanie dostarczonego szablonu \newline
+	k2 in [0,0.5] — przynajmniej dwie pozycje literaturowe traktujące o problematyce projektu \newline
+	k3 in [0,0.5] — przynajmniej 2 pozycje ściśle związane z wykorzystanym sprzętem, układami elektronicznymi,  modułami, itp.\newline
+	k4 in [0,1.5] — merytoryczna część założeń projektowych \newline
+	k5 in [0,0.5] — podział prac w projekcie na zadania.\newline}
 \section{Opis projektu}
 \label{sec:OpisProjektu}
 
-Krótki opis projektu czego będzie on dotyczył.
-
+Celem projektu jest zbudowanie zdalnie sterowanego robota jezdnego. Robot będzie sterowany za pomocą akcelerometru w telefonie. Dane będą przesyłanie za pomocą Wi-Fi lub bluetooth. Regulacja prędkości będzie się odbywać za pomocą regulatora PID. Dane o prędkości będą pobierane z enkoderów znajdujących się w kołach/osi robota. Opcjonalnie robot będzie wyświetlał szczegółowe dane o swoim stanie wewnętrznym za pomocą wbudowanego w płytkę z mikrokontrolerem wyświetlacza LCD.
+\newline
+\newline
 W przypadku, gdy projekt dotyczy systemu 
 wielomodułowego należy dołączyć diagram, który będzie prezentował
 architekturę systemu:
@@ -92,181 +101,63 @@ architekturę systemu:
 	\label{fig:Architektura}
 \end{figure}
 
-%Obecne we wszystkich dokumentach
-\section{Konfiguracja mikrokontrolera}
+\section{Założenia projektowe}
 
-Tutaj powinna znaleźć się konfigurację poszczególnych peryferiów 
-mikrokontrolera -- jeśli wykorzystywany jest np. ADC to należy 
-podać jego konfigurację nie zapominając o DMA jeśli jest 
-wykorzystywane. Proszę wzorować się na raporcie wygenerowanym 
-z programu STM32CubeMx 
-(plik PDF i TXT, Project -> Generate Report Ctrl+R). 
-W pliku PDF jest to rozdział \textit{IPs} and \textit{Middleware Configuration}. 
-Należy umieścić uproszczoną konfiguracje peryferiów w formie 
-tabelek (najistotniejsze parametry + parametry zmienione, pogrubione).
-Dodatkowo w pliku tekstowym (TXT) znajduje się konfiguracja pinów 
-mikrokontrolera, którą również należy zamieścić w raporcie.
+	\subsection{Mechanika}
+	\begin{enumerate}
+		\item Napęd
+		\newline
+		Napęd będzie realizowany na tylnią oś za pomocą silnika szczotkowego DC. Regulacja prędkości oparta o regulator PID i PWM/
+		
+		\item Sterowanie
+		\newline
+		Skręcanie będzie oparte o serwomechanizm. Serwomechanizm realizuje skręt przednich kół za pomocą poprzecznej belki przymocowanej do kół.
+		
+		\item Rama
+		\newline
+		Rama zbudowana z klocków lego. Posiada duże możliwości dopasowania do zmian w trakcie projektu.
+	\end{enumerate}
 
-W przypadku, gdy projekt zakłada wykorzystanie większej liczby modułów
-sekcję tą należy podzielić na odrębne podsekcje.
+	\subsection{Elektronika}
+	\begin{enumerate}
+		\item Mikrokontroler
+		\newline
+		Sterownik dostarczony przez prowadzącego STM32L476GDiscovery
+		
+		\item Pomiar prędkości
+		\newline
+		Realizowany za pomocą enkoderów znajdujących się w kołach/osi robota.
+		
+		\item Zasilanie
+		\newline
+		Oparte o akumulatory li-ion 18650 lub powerbank. Dopasowanie napięcia za pomocą przetwornicy step-up MT36?? oraz step-down ???
+	\end{enumerate}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.8\textwidth]{figures/obraz.png}
-	\caption{Konfiguracja wyjść mikrokontrolera w programie STM32CubeMX}
-	\label{fig:KonfiguracjaMikrokontrolera}
-\end{figure}
-
-\newpage
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.9\textheight,angle=90]{figures/obraz.png}
-	\caption{Konfiguracja zegarów mikrokontrolera}
-	\label{fig:KonfiguracjaZegara}
-\end{figure}
-
-%Obecne we wszystkich dokumentach
-\subsection{Konfiguracja pinów}
-
-\begin{table}[H]
-	\centering
-	\begin{tabular}{|l|l|l|l|}
-		\hline
-		Numer pinu	&	PIN & Tryb pracy & Funkcja/etykieta\\
-		\hline
-		2&	PC13 & ANTI\_TAMP	GPIO\_EXTI13	&B1 [Blue PushButton]\\
-		3&	PC14 & OSC32\_IN*	RCC\_OSC32\_IN	&\\
-		4&	PC15 & OSC32\_OUT*	RCC\_OSC32\_OUT	&\\
-		5&	PH0&  OSC\_IN*	RCC\_OSC\_IN	&\\
-		6&	PH1&  OSC\_OUT*&		RCC\_OSC\_OUT	\\
-		16&	PA2&	USART2\_TX&	USART\_TX\\
-		17&	PA3&	USART2\_RX&	USART\_RX\\
-		21&	PA5&	GPIO\_Output&	LD2 [Green Led]\\
-		29&	PB10&	I2C2\_SCL&	I2C\_SCL\\
-		41&	PA8&	TIM1\_CH1&	PWM1\\
-		46&	PA13*&	SYS\_JTMS-SWDIO&	TMS\\
-		49&	PA14*&	SYS\_JTCK-SWCLK&	TCK\\
-		55&	PB3*&	SYS\_JTDO-SWO&	SWO\\
-		62&	PB9&	I2C2\_SDA&	I2C\_SCL\\
-		\hline
-	\end{tabular}
-	\caption{Konfiguracja pinów mikrokontrolera}
+	\subsection{Komunikacja}
+	\begin{enumerate}
+		\item Połączenie ze smartfonem
+		\newline
+		Realizowane za pomocą modułu Wi-Fi esp8266 lub modułu bluetooth ????. W telefonie do komunikacji posłuży aplikacja RoboRemo.
+	\end{enumerate}
 	
-\end{table}
-
-%Obecne we wszystkich dokumentach
-\subsection{USART}
-
-Przykładowa konfiguracja peryferium interfejsu szeregowego.
-Należy opisać do czego będzie wykorzystywany interfejs. 
-Zmiany, które odbiegają od standardowych w programie CubeMX 
-powinn być zaznaczone innym kolorem, jak to zostało pokazane 
-w tabeli \ref{tab:USART}.
-
-\begin{table}[H]
-	\centering
-	\begin{tabular}{|l|c|} \hline
-		\textbf{Parametr} & Wartość \\
-		\hline
-		\hline  \textbf{Baud Rate}&11520  \\\hline
-		\textbf{Word Length } & \textcolor{blue}{8 Bits (including parity)}\\\hline
-		\textbf{Parity} &  None\\
-		\hline
-		\textbf{Stop Bits}& 1\\
-		\hline
-	\end{tabular}
-	\caption{Konfiguracja peryferium USART}
-	\label{tab:USART}
-\end{table}
-
-%Obecne w dokumencie do etapu II oraz III
-\section{Urządzenia zewnętrzne}
-
-Rozdział ten powinien zawierać opis i konfigurację wykorzystanych ukladów
-zewnętrznych, jak np. akcelerometr.
-
-%Obecne w dokumencie do etapu II oraz III
-\subsection{Akcelerometr -- LSM303C}
-
-Akcelerometr został wykorzystany do ...
-
-Konfiguracja rejestrów czujnika została zaprezentowana w ...
-Wpisanie tych wartości do rejestrów urządzenia ... powoduje ...
-
-\begin{table}[H]
-	\centering
-	\begin{tabular}{|l|c|} \hline
-		\textbf{Rejestr} & Wartość \\
-		\hline
-		\hline
-		CTRL\_REG2 (0x21) & 0x12\\\hline
-		CTRL\_REG3 (0x22) & 0x13\\\hline
-	\end{tabular}
-	\caption{Konfiguracja peryferium USART}
-	\label{tab:Akcelerometr}
-\end{table}
-
-%Obecne w dokumencie do etapu II oraz III
-\section{Projekt elektroniki}
-
-W przypadku, w którym projekt uwzględnia zastosowanie 
-dodatkowej elektroniki to wówczas jej opis powinien znaleźć się tutaj.
-Należy dołączyć schematy elektroniczne w formacie PDF 
-jako dodatek do dokumentu 
-za pomocą \textit{include}. Również w przypadku wytworzenia 
-płytek PCB powinny znaleźć się tutaj ich widoki za zachowaniem skali.
-Można również dołączyć zdjęcia 
-elektroniki po uprzednim skompresowaniu, aby wynikowy rozmiar 
-skompilowanego dokumentu nie był za duży.
-
-%Obecne w dokumencie do etapu II oraz III
-\section{Konstrukcja mechaniczna}
-
-W przypadku, w którym projekt uwzględnia zastosowanie 
-mechaniki to wówczas jej opis powinien znaleźć się tutaj.
-Nie należy dzielić rysunków mechaniki na poszczególne rzuty, 
-wystarczy zamieścić wyrenderowane modele 3D.
-Można również dołączyć zdjęcia wykonanej 
-mechaniki po uprzednim skompresowaniu, aby wynikowy rozmiar 
-skompilowanego dokumentu nie był za duży.
-
-%Obecne w dokumencie do etapu II oraz III
-\section{Opis działania programu}
-
-Należy zawrzeć tutaj opis działania programu.
-Mile widziany diagram prezentujący pracę programu.
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.5\textwidth]{figures/obraz.png}
-	\caption{Diagram przepływu}
-	\label{fig:Program}
-\end{figure}
-
-Sekcję tą można podzielić na dodatkowe podsekcje w miarę potrzeb. 
-Do tego celu nalezy wykorzystać \textit{subsection}.
-
-W przypadku, dodania istotnego fragmentu kodu należy posłużyć się środowiskiem 
-lstlisting:
-
-\begin{lstlisting}[tabsize=2]
-int foo(void){
-return 2;
-}
-\end{lstlisting}
-
-Przykładowy wzór (\ref{eq:Wzor}):
-\begin{equation}
-\label{eq:Wzor}
-\Theta = \int_t^{t+dt} \omega \, dt.	
-\end{equation}
-
-Przykładowa pozycja bibliograficzna \cite{SR01} znajduje się 
-w pliku bibliografia.bib.
 
 %Obecne w dokumencie do etapu I
 \section{Harmonogram pracy}
 
+\subsection{Zakres prac}
+	\begin{enumerate}
+		\item Zapoznanie się z mikrokontrolerem
+		\newline
+		Wykorzystane to tego celu zostaną poradniki ze strony www.forbot.pl \cite{kurs1, kurs2, kurs3}
+	\end{enumerate}
+\subsection{Kamienie milowe}
+	\begin{enumerate}
+		\item Zbudowanie działającego prototypu sterowanego joystickiem na płytce.
+		\item Zaimplementowanie regulacji prędkości w oparciu o regulator PID.
+		\item Zaimplementowanie sterowania smartfonem.
+	\end{enumerate}
+
+\subsection{Wykres Gantta}
 Należy wstawić diagram Gantta oraz określić ścieżkę 
 krytyczną. Ponadto zaznaczyć i opisać kamienie milowe.
 
@@ -342,23 +233,22 @@ Przykładowy podział prac dla projektu pod tytułem
 	\label{tab:PodzialPracyEtap3}
 \end{table}
 
-%Obecne w dokumencie do etapu II oraz III (jeśli coś zostało niezrealizowane)
-\section{Zadania niezrealizowane}
 
-Jeśli wszystkie zadania zostały realizowane to wówczas 
-ta sekcja powinna być usunięta w całości. W przeciwnym razie
-należy zawrzeć tutaj, jakie zadania zostały nie zrealizowane 
-oraz jaka była tego przyczyna.
-
-%Obecne we wszystkich dokumentach
-\section{Podsumowanie}
-
-Krótkie podsumowanie projektu
 
 \newpage
-\addcontentsline{toc}{section}{Bibilografia}
-\bibliography{bibliografia}
-\bibliographystyle{plabbrv}
+%\addcontentsline{toc}{section}{Bibilografia}
+%\bibliography{bibliografia}
+%\bibliographystyle{plabbrv}
+\begin{thebibliography}{9}
+	
+	\bibitem{kurs1}
+	\href{https://forbot.pl/blog/kurs-stm32-f4-1-czas-poznac-hal-spis-tresci-kursu-id14114}{Kurs STM32 F4 z wykorzystaniem HAL oraz Cube}
+	\bibitem{kurs2}
+	\href{https://forbot.pl/blog/stm32-praktyce-1-platforma-srodowisko-id2733}{Kurs STM32 F1 z wykorzystaniem bibliotek STDPeriph}
+	\bibitem{kurs3}
+	\href{https://forbot.pl/blog/kurs-stm32-f1-migracja-na-hal-wstep-spis-tresci-id23580} {Kurs STM32 F1 z wykorzystaniem bibliotek HAL}
+	
+\end{thebibliography}
 
 
 \end{document}
