@@ -90,13 +90,10 @@
 Celem projektu jest zbudowanie zdalnie sterowanego robota jezdnego. Robot będzie sterowany za pomocą akcelerometru w telefonie. Dane będą przesyłanie za pomocą Wi-Fi lub bluetooth. Regulacja prędkości będzie się odbywać za pomocą regulatora PID. Dane o prędkości będą pobierane z enkoderów znajdujących się w kołach/osi robota. Opcjonalnie robot będzie wyświetlał szczegółowe dane o swoim stanie wewnętrznym za pomocą wbudowanego w płytkę z mikrokontrolerem wyświetlacza LCD.
 \newline
 \newline
-W przypadku, gdy projekt dotyczy systemu 
-wielomodułowego należy dołączyć diagram, który będzie prezentował
-architekturę systemu:
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{figures/obraz.png}
+	\includegraphics[width=0.8\textwidth]{figures/diagram.png}
 	\caption{Architektura systemu}
 	\label{fig:Architektura}
 \end{figure}
@@ -107,7 +104,7 @@ architekturę systemu:
 	\begin{enumerate}
 		\item Napęd
 		\newline
-		Napęd będzie realizowany na tylnią oś za pomocą silnika szczotkowego DC. Regulacja prędkości oparta o regulator PID i PWM/
+		Napęd będzie realizowany na tylną oś za pomocą silnika szczotkowego DC. Regulacja prędkości oparta o regulator PID oraz sterowanie PWM.
 		
 		\item Sterowanie
 		\newline
@@ -122,7 +119,7 @@ architekturę systemu:
 	\begin{enumerate}
 		\item Mikrokontroler
 		\newline
-		Sterownik dostarczony przez prowadzącego STM32L476GDiscovery
+		Sterownik dostarczony przez prowadzącego STM32L476GDiscovery.
 		
 		\item Pomiar prędkości
 		\newline
@@ -130,14 +127,17 @@ architekturę systemu:
 		
 		\item Zasilanie
 		\newline
-		Oparte o akumulatory li-ion 18650 lub powerbank. Dopasowanie napięcia za pomocą przetwornicy step-up MT36?? oraz step-down ???
+		Oparte o akumulatory li-ion 18650 lub powerbank. Dopasowanie napięcia za pomocą przetwornicy step-up MT3608 do napędu kół oraz step-down do zasilania mikrokontrolera i modułu Wi-Fi w standardzie 3.3V.
 	\end{enumerate}
 
 	\subsection{Komunikacja}
 	\begin{enumerate}
 		\item Połączenie ze smartfonem
 		\newline
-		Realizowane za pomocą modułu Wi-Fi esp8266 lub modułu bluetooth ????. W telefonie do komunikacji posłuży aplikacja RoboRemo.
+		Realizowane za pomocą modułu Wi-Fi ESP8266. W telefonie do komunikacji posłuży aplikacja RoboRemo.
+		\item Połączenie modułu Wi-Fi z mikrokontrolerem
+		\newline
+		Realizowane za pomocą Serial Portu.
 	\end{enumerate}
 	
 
@@ -148,13 +148,13 @@ architekturę systemu:
 	\begin{enumerate}
 		\item Zapoznanie się z mikrokontrolerem
 		\newline
-		Wykorzystane to tego celu zostaną poradniki ze strony www.forbot.pl \cite{kurs1, kurs2, kurs3}
+		Wykorzystane to tego celu zostaną poradniki ze strony www.forbot.pl. \cite{kurs1, kurs2, kurs3}
 	\end{enumerate}
 \subsection{Kamienie milowe}
 	\begin{enumerate}
-		\item Zbudowanie działającego prototypu sterowanego joystickiem na płytce.
-		\item Zaimplementowanie regulacji prędkości w oparciu o regulator PID.
-		\item Zaimplementowanie sterowania smartfonem.
+		\item Implementacja działającego prototypu sterowanego joystickiem na płytce.
+		\item Implementacja regulacji prędkości w oparciu o regulator PID.
+		\item Implementacja sterowania smartfonem.
 	\end{enumerate}
 
 \subsection{Wykres Gantta}
@@ -186,9 +186,9 @@ Przykładowy podział prac dla projektu pod tytułem
 	\begin{tabular}{|L{7cm}|L{0.8cm}||L{7cm}|L{0.8cm}|}
 		\hline
 		\hline
-		\textbf{Adam Babacki} & 
+		\textbf{Albert Lis} & 
 		\% & 
-		\textbf{Bartłomiej Cabacki} & \%\\
+		\textbf{Michał Moruń} & \%\\
 		\hline
 		\hline
 		Wstępna konfiguracja peryferiów w programie CubeMx		& &	
@@ -212,9 +212,9 @@ Przykładowy podział prac dla projektu pod tytułem
 	\begin{tabular}{|L{7cm}|L{0.8cm}||L{7cm}|L{0.8cm}|}
 		\hline
 		\hline
-		\textbf{Adam Babacki} & 
+		\textbf{Albert Lis} & 
 		\% & 
-		\textbf{Bartłomiej Cabacki} & \%\\
+		\textbf{Michał Moruń} & \%\\
 		\hline
 		\hline
 		Finalna konfiguracja peryferiów w programie CubeMX		& &	
