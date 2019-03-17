@@ -1,6 +1,8 @@
 % !TeX encoding = UTF-8
 % !TeX spellcheck = pl_PL
 
+
+
 % $Id:$
 
 %Author: Wojciech Domski
@@ -19,7 +21,7 @@
 %\newcommand{\doctype}{Dokumentacja} %etap III
 
 %wpisz nazwę projektu
-\newcommand{\projectname}{Humanistycznie upośledzony robot akrobatyczny}
+\newcommand{\projectname}{Humanistycznie upo\'sledzony robot akrobatyczny}
 
 %wpisz akronim projektu
 \newcommand{\acronim}{HURA}
@@ -27,16 +29,17 @@
 %wpisz Imię i nazwisko oraz numer albumu
 \newcommand{\osobaA}{Albert \textsc{Lis}, 235534}
 %w przypadku projektu jednoosobowego usuń zawartość nowej komendy
-\newcommand{\osobaB}{Michał \textsc{Moruń}, XXX}
+\newcommand{\osobaB}{Micha\l{} \textsc{Moru\'n}, 235986}
 
 %wpisz termin w formie, jak poniżej dzień, parzystość, godzina
-\newcommand{\termin}{srTP15 ???}
+\newcommand{\termin}{sr TP15 }
 
 %wpisz imię i nazwisko prowadzącego
 \newcommand{\prowadzacy}{mgr in\.{z}. Wojciech \textsc{Domski}}
 
 \documentclass[10pt, a4paper]{article}
-
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
 \usepackage[usenames,dvipsnames]{xcolor}
 
 \include{preambula}
@@ -87,7 +90,7 @@
 \section{Opis projektu}
 \label{sec:OpisProjektu}
 
-Celem projektu jest zbudowanie zdalnie sterowanego robota jezdnego. Robot będzie sterowany za pomocą akcelerometru w telefonie. Dane będą przesyłanie za pomocą Wi-Fi lub bluetooth. Regulacja prędkości będzie się odbywać za pomocą regulatora PID. Dane o prędkości będą pobierane z enkoderów znajdujących się w kołach/osi robota. Opcjonalnie robot będzie wyświetlał szczegółowe dane o swoim stanie wewnętrznym za pomocą wbudowanego w płytkę z mikrokontrolerem wyświetlacza LCD.
+Celem projektu jest zbudowanie zdalnie sterowanego robota jezdnego. Robot będzie sterowany za pomocą akcelerometru w telefonie. Dane będą przesyłanie za pomocą Wi-Fi lub Bluetooth. Regulacja prędkości będzie się odbywać za pomocą regulatora PID. Dane o prędkości będą pobierane z enkoderów znajdujących się w kołach robota. Opcjonalnie robot będzie wyświetlał szczegółowe dane o swoim stanie wewnętrznym za pomocą wbudowanego w płytkę z mikrokontrolerem wyświetlacza LCD.
 \newline
 \newline
 
@@ -123,7 +126,7 @@ Celem projektu jest zbudowanie zdalnie sterowanego robota jezdnego. Robot będzi
 		
 		\item Pomiar prędkości
 		\newline
-		Realizowany za pomocą enkoderów znajdujących się w kołach/osi robota.
+		Realizowany za pomocą enkoderów znajdujących się w kołach robota.
 		
 		\item Zasilanie
 		\newline
@@ -137,9 +140,52 @@ Celem projektu jest zbudowanie zdalnie sterowanego robota jezdnego. Robot będzi
 		Realizowane za pomocą modułu Wi-Fi ESP8266. W telefonie do komunikacji posłuży aplikacja RoboRemo.
 		\item Połączenie modułu Wi-Fi z mikrokontrolerem
 		\newline
-		Realizowane za pomocą Serial Portu.
+		Realizowane za pomocą portu szeregowego.
 	\end{enumerate}
 	
+\section{Konfiguracja mikrokontrolera}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{figures/piny1.png}
+	\caption{Konfiguracja wyjść mikrokontrolera w programie STM32CubeMX}
+	\label{fig:KonfiguracjaMikrokontrolera}
+\end{figure}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textheight,angle=90]{figures/zegar.png}
+	\caption{Konfiguracja zegarów mikrokontrolera}
+	\label{fig:KonfiguracjaZegara}
+\end{figure}
+\subsection{Konfiguracja pinów}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|l|l|l|}
+		\hline
+		PIN & Tryb pracy & Funkcja/etykieta\\
+		\hline
+			PC14 & OSC32\_IN*	RCC\_OSC32\_IN	&\\
+			PC15 & OSC32\_OUT*	RCC\_OSC32\_OUT	&\\
+			PH0&  OSC\_IN*	RCC\_OSC\_IN	&\\
+			PH1&  OSC\_OUT*&		RCC\_OSC\_OUT	\\
+			PD&	USART2\_TX&	USART\_TX\\
+			PD6&	USART2\_RX&	USART\_RX\\
+			PE11&	TIM1\_CH2&	PWM1\_Skręt\\
+			PE14&	TIM1\_CH4&	PWM2\_Silnik\\
+			PA1&	GPIO\_Input&	JOY\_LEFT\\
+			PA2&	GPIO\_Input&	JOY\_RIGHT\\
+			PA3&	GPIO\_Input&	JOY\_UP\\
+			PA4&	GPIO\_Input&	JOY\_DOWN\\
+
+
+		\hline
+	\end{tabular}
+	\caption{Konfiguracja pinów mikrokontrolera}
+	
+\end{table}
+
 
 %Obecne w dokumencie do etapu I
 \section{Harmonogram pracy}
@@ -163,7 +209,7 @@ krytyczną. Ponadto zaznaczyć i opisać kamienie milowe.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{figures/obraz.png}
+	\includegraphics[width=1.1\textwidth]{figures/gant.png}
 	\caption{Diagram Gantta}
 	\label{fig:DiagramGantta}
 \end{figure}
@@ -178,8 +224,7 @@ Przykładowa tabele podziału zadań dla etapu II
 zostały przedstawione poniżej. 
 Przy podziale prac nie uwzględniamy tworzenia dokumentacji projektu!
 
-Przykładowy podział prac dla projektu pod tytułem 
-"Automatyczny dyktafon rozmowy":
+Przykładowy podział prac:
 
 \begin{table}[H]
 	\centering
@@ -191,16 +236,17 @@ Przykładowy podział prac dla projektu pod tytułem
 		\textbf{Michał Moruń} & \%\\
 		\hline
 		\hline
-		Wstępna konfiguracja peryferiów w programie CubeMx		& &	
-		Wstępna konfiguracja peryferiów w programie CubeMx &\\
+		Schemat elektryczny i elektroniczny		& &	
+		Schemat mechaniczny &\\
 		\hline
-		Implementacja obsługi mikrofonu & &
-		Opracowanie algorytmu automatycznej detekcji rozmowy &\\
+		Budowanie odpowiednich algorytmów & &
+		Budowanie odpowiednich algorytmów &\\
 		\hline
-		Opracowanie sposobu przechowywania danych na zewnętrznej pamięci FLASH & &
-		Oprogramowanie testujące obsługę mikrofonu & \\
+		Budowa modułu elektronicznego & &
+		Budowa modułu mechanicznego & \\
 		\hline
-		Odtwarzanie dźwięku za pomocą Audio DAC & & &\\
+		Integracja części mechanicznej oraz elektronicznej & & 
+		Integracja części mechanicznej oraz elektronicznej &\\
 		\hline
 	\end{tabular}
 	\caption{Podział pracy -- Etap II}
@@ -217,16 +263,14 @@ Przykładowy podział prac dla projektu pod tytułem
 		\textbf{Michał Moruń} & \%\\
 		\hline
 		\hline
-		Finalna konfiguracja peryferiów w programie CubeMX		& &	
-		Finalna konfiguracja peryferiów w programie CubeMX &\\
+		Utworzenie modułu integrującego robota z telefonem & &	
+		Utworzenie modułu integrującego robota z telefonem &\\
 		\hline
-		Zapisywanie dźwięku na pamięć zewnętrzną FLASH  & &
-		Integracja modułów &\\
+		Integracja ze sobą wszystkich modułów & &
+		Integracja ze sobą wszystkich modułów & \\
 		\hline
-		Obsługa wyświetlacza ciekłokrystalicznego & &
-		Obsługa joysticka & \\
-		\hline
-		 & & Interfejs użytkownika &\\
+		 Stworzenie interfejsu użytkownika & &
+		 Stworzenie interfejsu użytkownika &\\
 		\hline
 	\end{tabular}
 	\caption{Podział pracy -- Etap III}
@@ -247,6 +291,10 @@ Przykładowy podział prac dla projektu pod tytułem
 	\href{https://forbot.pl/blog/stm32-praktyce-1-platforma-srodowisko-id2733}{Kurs STM32 F1 z wykorzystaniem bibliotek STDPeriph}
 	\bibitem{kurs3}
 	\href{https://forbot.pl/blog/kurs-stm32-f1-migracja-na-hal-wstep-spis-tresci-id23580} {Kurs STM32 F1 z wykorzystaniem bibliotek HAL}
+		\bibitem{kurs4}
+	\href{https://media.readthedocs.org/pdf/arduino-esp8266/docs_to_readthedocs/arduino-esp8266.pdf} {ESP8266 Arduino Core Documentation}
+			\bibitem{kurs5}
+	\href{https://docer.pl/doc/n5xcex8} {Teoria sterowania w ćwiczeniach}
 	
 \end{thebibliography}
 
