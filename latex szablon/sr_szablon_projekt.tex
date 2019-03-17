@@ -143,6 +143,46 @@ Celem projektu jest zbudowanie zdalnie sterowanego robota jezdnego. Robot będzi
 		Realizowane za pomocą portu szeregowego.
 	\end{enumerate}
 	
+\section{Konfiguracja mikrokontrolera}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{figures/piny.png}
+	\caption{Konfiguracja wyjść mikrokontrolera w programie STM32CubeMX}
+	\label{fig:KonfiguracjaMikrokontrolera}
+\end{figure}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textheight,angle=90]{figures/zegar.png}
+	\caption{Konfiguracja zegarów mikrokontrolera}
+	\label{fig:KonfiguracjaZegara}
+\end{figure}
+\subsection{Konfiguracja pinów}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|l|l|l|}
+		\hline
+		Numer pinu	&	PIN & Tryb pracy & Funkcja/etykieta\\
+		\hline
+		8&	PC14 & OSC32\_IN*	RCC\_OSC32\_IN	&\\
+		9&	PC15 & OSC32\_OUT*	RCC\_OSC32\_OUT	&\\
+		23&	PH0&  OSC\_IN*	RCC\_OSC\_IN	&\\
+		24&	PH1&  OSC\_OUT*&		RCC\_OSC\_OUT	\\
+		36&	PA2&	USART2\_TX&	USART\_TX\\
+		37&	PA3&	USART2\_RX&	USART\_RX\\
+		100&	PA8&	TIM1\_CH1&	PWM1\\
+		103&	PA11&	GPIO\_Output&	Silnik\_1\\
+		104&	PA12&	GPIO\_Output&	Silnik\_2\\
+
+
+		\hline
+	\end{tabular}
+	\caption{Konfiguracja pinów mikrokontrolera}
+	
+\end{table}
+
 
 %Obecne w dokumencie do etapu I
 \section{Harmonogram pracy}
@@ -166,7 +206,7 @@ krytyczną. Ponadto zaznaczyć i opisać kamienie milowe.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{figures/obraz.png}
+	\includegraphics[width=1.1\textwidth]{figures/gant.png}
 	\caption{Diagram Gantta}
 	\label{fig:DiagramGantta}
 \end{figure}
