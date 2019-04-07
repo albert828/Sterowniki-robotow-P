@@ -1,0 +1,348 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = pl_PL
+
+
+
+% $Id:$
+
+%Author: Wojciech Domski
+%Szablon do ząłożeń projektowych, raportu i dokumentacji z steorwników robotów
+%Wersja v.1.0.0
+%
+
+
+%% Konfiguracja:
+\newcommand{\kurs}{Sterowniki robot\'{o}w}
+\newcommand{\formakursu}{Projekt}
+
+%odkomentuj właściwy typ projektu, a pozostałe zostaw zakomentowane
+\newcommand{\doctype}{Za\l{}o\.{z}enia projektowe} %etap I
+%\newcommand{\doctype}{Raport} %etap II
+%\newcommand{\doctype}{Dokumentacja} %etap III
+
+%wpisz nazwę projektu
+\newcommand{\projectname}{Humanistycznie upo\'sledzony robot akrobatyczny}
+
+%wpisz akronim projektu
+\newcommand{\acronim}{HURA}
+
+%wpisz Imię i nazwisko oraz numer albumu
+\newcommand{\osobaA}{Albert \textsc{Lis}, 235534}
+%w przypadku projektu jednoosobowego usuń zawartość nowej komendy
+\newcommand{\osobaB}{Micha\l{} \textsc{Moru\'n}, 235986}
+
+%wpisz termin w formie, jak poniżej dzień, parzystość, godzina
+\newcommand{\termin}{sr TP15 }
+
+%wpisz imię i nazwisko prowadzącego
+\newcommand{\prowadzacy}{mgr in\.{z}. Wojciech \textsc{Domski}}
+
+\documentclass[10pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+\usepackage[usenames,dvipsnames]{xcolor}
+
+\include{preambula}
+	
+\begin{document}
+
+\def\tablename{Tabela}	%zmienienie nazwy tabel z Tablica na Tabela
+
+\begin{titlepage}
+	\begin{center}
+		\textsc{\LARGE \formakursu}\\[1cm]		
+		\textsc{\Large \kurs}\\[0.5cm]		
+		\rule{\textwidth}{0.08cm}\\[0.4cm]
+		{\huge \bfseries \doctype}\\[1cm]
+		{\huge \bfseries \projectname}\\[0.5cm]
+		{\huge \bfseries \acronim}\\[0.4cm]
+		\rule{\textwidth}{0.08cm}\\[1cm]
+		
+		\begin{flushright} \large
+		\emph{Skład grupy:}\\
+		\osobaA\\
+		\osobaB\\[0.4cm]
+		
+		\emph{Termin: }\termin\\[0.4cm]
+
+		\emph{Prowadzący:} \\
+		\prowadzacy \\
+		
+		\end{flushright}
+		
+		\vfill
+		
+		{\large \today}
+	\end{center}	
+\end{titlepage}
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{Opis projektu}
+\label{sec:OpisProjektu}
+
+Celem projektu jest zbudowanie zdalnie sterowanego robota jezdnego. Robot będzie sterowany za pomocą akcelerometru w telefonie. Dane będą przesyłanie za pomocą Wi-Fi lub Bluetooth. Regulacja prędkości będzie się odbywać za pomocą regulatora PID. Dane o prędkości będą pobierane z enkoderów znajdujących się w kołach robota. Opcjonalnie robot będzie wyświetlał szczegółowe dane o swoim stanie wewnętrznym za pomocą wbudowanego w płytkę z mikrokontrolerem wyświetlacza LCD.
+\newline
+\newline
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{figures/diagram.png}
+	\caption{Architektura systemu}
+	\label{fig:Architektura}
+\end{figure}
+
+\section{Założenia projektowe}
+
+	\subsection{Mechanika}
+	\begin{enumerate}
+		\item Napęd
+		\newline
+		Napęd będzie realizowany na tylną oś za pomocą silnika szczotkowego DC. Regulacja prędkości oparta o regulator PID oraz sterowanie PWM.
+		
+		\item Sterowanie
+		\newline
+		Skręcanie będzie oparte o serwomechanizm. Serwomechanizm realizuje skręt przednich kół za pomocą poprzecznej belki przymocowanej do kół.
+		
+		\item Rama
+		\newline
+		Rama zbudowana z klocków lego. Posiada duże możliwości dopasowania do zmian w trakcie projektu.
+	\end{enumerate}
+
+	\subsection{Elektronika}
+	\begin{enumerate}
+		\item Mikrokontroler
+		\newline
+		Sterownik dostarczony przez prowadzącego STM32L476GDiscovery.
+		
+		\item Pomiar prędkości
+		\newline
+		Realizowany za pomocą enkoderów znajdujących się w kołach robota.
+		
+		\item Zasilanie
+		\newline
+		Oparte o akumulatory li-ion 18650 lub powerbank. Dopasowanie napięcia za pomocą przetwornicy step-up MT3608 do napędu kół oraz step-down do zasilania mikrokontrolera i modułu Wi-Fi w standardzie 3.3V.
+	\end{enumerate}
+
+	\subsection{Komunikacja}
+	\begin{enumerate}
+		\item Połączenie ze smartfonem
+		\newline
+		Realizowane za pomocą modułu Wi-Fi ESP8266. W telefonie do komunikacji posłuży aplikacja RoboRemo.
+		\item Połączenie modułu Wi-Fi z mikrokontrolerem
+		\newline
+		Realizowane za pomocą portu szeregowego.
+	\end{enumerate}
+	
+\section{Konfiguracja mikrokontrolera}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{figures/piny1.png}
+	\caption{Konfiguracja wyjść mikrokontrolera w programie STM32CubeMX}
+	\label{fig:KonfiguracjaMikrokontrolera}
+\end{figure}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textheight,angle=90]{figures/zegar.png}
+	\caption{Konfiguracja zegarów mikrokontrolera}
+	\label{fig:KonfiguracjaZegara}
+\end{figure}
+\subsection{Konfiguracja pinów}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|l|l|l|}
+		\hline
+		PIN & Tryb pracy & Funkcja/etykieta\\
+		\hline
+			PC14 & OSC32\_IN*	RCC\_OSC32\_IN	&\\
+			PC15 & OSC32\_OUT*	RCC\_OSC32\_OUT	&\\
+			PH0&  OSC\_IN*	RCC\_OSC\_IN	&\\
+			PH1&  OSC\_OUT*&		RCC\_OSC\_OUT	\\
+			PD5&	USART2\_TX&	USART\_TX\\
+			PD6&	USART2\_RX&	USART\_RX\\
+			PE11&	TIM1\_CH2&	PWM1\_Skręt\\
+			PE14&	TIM1\_CH4&	PWM2\_Silnik\\
+			PA1&	GPIO\_Input&	JOY\_LEFT\\
+			PA2&	GPIO\_Input&	JOY\_RIGHT\\
+			PA3&	GPIO\_Input&	JOY\_UP\\
+PA4& GPIO\_Input& JOY\_DOWN\\
+
+
+		\hline
+	\end{tabular}
+	\caption{Konfiguracja pinów mikrokontrolera}
+	
+\end{table}
+
+
+%Obecne w dokumencie do etapu I
+\section{Harmonogram pracy}
+
+\subsection{Zakres prac}
+	\begin{enumerate}
+		\item Zapoznanie się z mikrokontrolerem
+		\newline
+		Wykorzystane to tego celu zostaną poradniki ze strony www.forbot.pl. \cite{kurs1, kurs2, kurs3}
+	\end{enumerate}
+\subsection{Kamienie milowe}
+	\begin{enumerate}
+		\item Implementacja działającego prototypu sterowanego joystickiem na płytce.
+		\item Implementacja regulacji prędkości w oparciu o regulator PID \cite{kurs5 , kurs6, kurs7}.
+		\item Implementacja sterowania smartfonem \cite{kurs4}.
+	\end{enumerate}
+
+\subsection{Wykres Gantta}
+
+\begin{table}[H]
+	\centering
+\begin{tabular}{|c|l|}
+\hline
+Nr zadania & Opis Zadania                                       \\ \hline
+1          & Określenie założeń projektu i przygotowanie planu  \\ \hline
+2          & Oddanie etapu 1                                    \\ \hline
+3          & Schemat elektryczny i elektroniczny                \\ \hline
+4          & Schemat mechaniczny                                \\ \hline
+5          & Budowanie odpowiednich algorytmów                  \\ \hline
+6          & Budowa modułu elektronicznego                      \\ \hline
+7          & Budowa modułu mechanicznego                        \\ \hline
+8          & Integracja części mechanicznej oraz elektronicznej \\ \hline
+9          & Oddanie etapu 2                                    \\ \hline
+10         & Utworzenie modułu integrującego robota z telefonem \\ \hline
+11         & Integracja ze sobą wszystkich modułów              \\ \hline
+12         & Stworzenie interfejsu użytkownika                  \\ \hline
+13         & Oddanie etapu 3                                    \\ \hline
+\end{tabular}
+	\caption{Tabela zadań do wykresu Gantta}
+\end{table}
+\newpage
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.1\textwidth]{figures/gant.png}
+	\caption{Diagram Gantta}
+	\label{fig:DiagramGantta}
+\end{figure}
+
+%Obecne w dokumencie do etapu I
+\subsection{Podział pracy}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|L{7cm}|L{0.8cm}||L{7cm}|L{0.8cm}|}
+		\hline
+		\hline
+		\textbf{Albert Lis} & 
+		\% & 
+		\textbf{Michał Moruń} & \%\\
+		\hline
+		\hline
+		Schemat elektryczny i elektroniczny		& &	
+		Schemat mechaniczny &\\
+		\hline
+		Budowanie odpowiednich algorytmów & &
+		Budowanie odpowiednich algorytmów &\\
+		\hline
+		Budowa modułu elektronicznego & &
+		Budowa modułu mechanicznego & \\
+		\hline
+		Integracja części mechanicznej oraz elektronicznej & & 
+		Integracja części mechanicznej oraz elektronicznej &\\
+		\hline
+	\end{tabular}
+	\caption{Podział pracy -- Etap II}
+	\label{tab:PodzialPracyEtap2}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|L{7cm}|L{0.8cm}||L{7cm}|L{0.8cm}|}
+		\hline
+		\hline
+		\textbf{Albert Lis} & 
+		\% & 
+		\textbf{Michał Moruń} & \%\\
+		\hline
+		\hline
+		Utworzenie modułu integrującego robota z telefonem & &	
+		Stworzenie interfejsu użytkownika &\\
+		\hline
+		 Integracja ze sobą wszystkich modułów & &
+		 Integracja ze sobą wszystkich modułów & \\
+		\hline
+	\end{tabular}
+	\caption{Podział pracy -- Etap III}
+	\label{tab:PodzialPracyEtap3}
+\end{table}
+
+
+
+\newpage
+%\addcontentsline{toc}{section}{Bibilografia}
+%\bibliography{bibliografia}
+%\bibliographystyle{plabbrv}
+\begin{thebibliography}{9}
+	
+	\bibitem{kurs1}
+	\href{https://forbot.pl/blog/kurs-stm32-f4-1-czas-poznac-hal-spis-tresci-kursu-id14114}{Kurs STM32 F4 z wykorzystaniem HAL oraz Cube}
+	\bibitem{kurs2}
+	\href{https://forbot.pl/blog/stm32-praktyce-1-platforma-srodowisko-id2733}{Kurs STM32 F1 z wykorzystaniem bibliotek STDPeriph}
+	\bibitem{kurs3}
+	\href{https://forbot.pl/blog/kurs-stm32-f1-migracja-na-hal-wstep-spis-tresci-id23580} {Kurs STM32 F1 z wykorzystaniem bibliotek HAL}
+		\bibitem{kurs4}
+	\href{https://media.readthedocs.org/pdf/arduino-esp8266/docs_to_readthedocs/arduino-esp8266.pdf} {ESP8266 Arduino Core Documentation}
+			\bibitem{kurs5}
+	\href{https://docer.pl/doc/n5xcex8} { "Teoria sterowania w ćwiczeniach" / Krzysztof Amborski, Andrzej Murusak - 1978}
+	
+			\bibitem{kurs6}
+	\href{http://hps.biblos.pk.edu.pl/ST/2016/09/100000294850/100000294850_Lisowski_PodstawyAutomatyki.pdf} {"Podstawy automatyki" / Józef Lisowski. – 2015}
+	
+			\bibitem{kurs7}
+	\href{http://www.ksiegarniasuplement.pl/ksiazka/Brzozka-Jerzy/Regulatory-i-uklady-automatyki,36961901633KS} {"Regulatory i układy automatyki" / Jerzy Brzózka - 2004}
+	
+\end{thebibliography}
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
