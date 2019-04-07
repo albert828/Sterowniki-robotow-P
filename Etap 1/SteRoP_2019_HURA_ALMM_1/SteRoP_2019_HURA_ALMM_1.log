@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.6960 64-bit) (preloaded format=pdflatex 2019.3.12)  17 MAR 2019 19:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.3.20)  7 APR 2019 14:53
 entering extended mode
-**./sr_szablon_projekt.tex
-(sr_szablon_projekt.tex
+**./SteRoP_2019_HURA_ALMM_1.tex
+(SteRoP_2019_HURA_ALMM_1.tex
 LaTeX2e <2018-12-01>
 (E:\Programy\Miktex\tex/latex/base\article.cls
 Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
@@ -836,8 +836,8 @@ Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 409.
 ))
 \c@Dn=\count169
 \c@Ex=\count170
-) (sr_szablon_projekt.aux)
-\openout1 = `sr_szablon_projekt.aux'.
+) (SteRoP_2019_HURA_ALMM_1.aux)
+\openout1 = `SteRoP_2019_HURA_ALMM_1.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 47.
 LaTeX Font Info:    ... okay on input line 47.
@@ -859,8 +859,7 @@ LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 47.
 LaTeX Font Info:    ... okay on input line 47.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 47.
 LaTeX Font Info:    Try loading font information for TS1+cmr on input line 47.
-
-(E:\Programy\Miktex\tex/latex/base\ts1cmr.fd
+ (E:\Programy\Miktex\tex/latex/base\ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 47.
@@ -894,9 +893,9 @@ LaTeX Info: Redefining \ref on input line 47.
 LaTeX Info: Redefining \pageref on input line 47.
 LaTeX Info: Redefining \nameref on input line 47.
 
-(sr_szablon_projekt.out) (sr_szablon_projekt.out)
+(SteRoP_2019_HURA_ALMM_1.out) (SteRoP_2019_HURA_ALMM_1.out)
 \@outlinefile=\write4
-\openout4 = `sr_szablon_projekt.out'.
+\openout4 = `SteRoP_2019_HURA_ALMM_1.out'.
 
 
 *geometry* driver: auto-detecting
@@ -941,7 +940,7 @@ Non-PDF special ignored!
 
 
 {C:/Users/Papa Smerf/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-(sr_szablon_projekt.toc
+(SteRoP_2019_HURA_ALMM_1.toc
 LaTeX Font Info:    Try loading font information for OML+plm on input line 4.
 
 ("C:\Users\Papa Smerf\AppData\Roaming\MiKTeX\2.9\tex/latex/polski\omlplm.fd"
@@ -974,7 +973,7 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 4.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ))
 \tf@toc=\write5
-\openout5 = `sr_szablon_projekt.toc'.
+\openout5 = `SteRoP_2019_HURA_ALMM_1.toc'.
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
@@ -982,40 +981,39 @@ been already used, duplicate ignored
                    \relax 
 l.81 \newpage
               [1]
-Underfull \hbox (badness 10000) in paragraph at lines 93--96
+Underfull \hbox (badness 10000) in paragraph at lines 86--89
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 93--96
+Underfull \hbox (badness 10000) in paragraph at lines 86--89
 
  []
 
 <figures/diagram.png, id=81, 654.445pt x 182.6825pt>
 File: figures/diagram.png Graphic file (type png)
 <use figures/diagram.png>
-Package pdftex.def Info: figures/diagram.png  used on input line 99.
+Package pdftex.def Info: figures/diagram.png  used on input line 92.
 (pdftex.def)             Requested size: 364.19667pt x 101.66315pt.
+<figures/piny1.png, id=83, 486.618pt x 454.69875pt>
+File: figures/piny1.png Graphic file (type png)
+<use figures/piny1.png>
+Package pdftex.def Info: figures/piny1.png  used on input line 142.
+(pdftex.def)             Requested size: 455.24411pt x 425.39787pt.
 [2pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) 
 has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.141 		\item P
-               ołączenie modułu Wi-Fi z mikrokontrolerem <./figures/diagram.
-png>]
-<figures/piny1.png, id=96, 486.618pt x 454.69875pt>
-File: figures/piny1.png Graphic file (type png)
-<use figures/piny1.png>
-Package pdftex.def Info: figures/piny1.png  used on input line 149.
-(pdftex.def)             Requested size: 455.24411pt x 425.39787pt.
-<figures/zegar.png, id=97, 770.88pt x 587.94656pt>
+l.146 
+       <./figures/diagram.png>]
+<figures/zegar.png, id=99, 770.88pt x 587.94656pt>
 File: figures/zegar.png Graphic file (type png)
 <use figures/zegar.png>
-Package pdftex.def Info: figures/zegar.png  used on input line 157.
+Package pdftex.def Info: figures/zegar.png  used on input line 150.
 (pdftex.def)             Requested size: 632.50047pt x 482.40639pt.
 
-Overfull \hbox (27.16228pt too wide) in paragraph at lines 157--158
+Overfull \hbox (27.16228pt too wide) in paragraph at lines 150--151
  [][] 
  []
 
@@ -1024,78 +1022,85 @@ has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.161 \subsection
+l.154 \subsection
                  {Konfiguracja pinów} <./figures/piny1.png>] [4pdfTeX warning 
 (ext4): destination with the same identifier (name{figure.3}) has been already 
 used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.188 
-       <./figures/zegar.png>]
-<figures/gant.png, id=113, 931.22906pt x 236.38312pt>
+l.181 
+       <./figures/zegar.png>] [5pdfTeX warning (ext4): destination with the sam
+e identifier (name{table.1}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.222 \newpage
+              pdfTeX warning (ext4): destination with the same identifier (name
+{table.2}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.222 \newpage
+              ]
+<figures/gant.png, id=131, 931.22906pt x 236.38312pt>
 File: figures/gant.png Graphic file (type png)
 <use figures/gant.png>
-Package pdftex.def Info: figures/gant.png  used on input line 212.
+Package pdftex.def Info: figures/gant.png  used on input line 225.
 (pdftex.def)             Requested size: 500.77129pt x 127.11476pt.
 
-Overfull \hbox (45.52718pt too wide) in paragraph at lines 212--213
+Overfull \hbox (45.52718pt too wide) in paragraph at lines 225--226
  [][] 
  []
 
 
-Overfull \hbox (41.01898pt too wide) in paragraph at lines 231--252
+Overfull \hbox (41.01898pt too wide) in paragraph at lines 235--256
  [][] 
  []
 
-[5pdfTeX warning (ext4): destination with the same identifier (name{table.1}) h
-as been already used, duplicate ignored
 
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.255 
-      pdfTeX warning (ext4): destination with the same identifier (name{figure.
-4}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.255 
-       <./figures/gant.png>]
-Overfull \hbox (41.01898pt too wide) in paragraph at lines 258--276
+Overfull \hbox (41.01898pt too wide) in paragraph at lines 262--277
  [][] 
  []
 
-[6pdfTeX warning (ext4): destination with the same identifier (name{table.2}) h
-as been already used, duplicate ignored
+[6pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) 
+has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.282 \newpage
+l.283 \newpage
               pdfTeX warning (ext4): destination with the same identifier (name
 {table.3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.282 \newpage
-              ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 302.
+l.283 \newpage
+              pdfTeX warning (ext4): destination with the same identifier (name
+{table.4}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.283 \newpage
+               <./figures/gant.png>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 309.
  [7]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 302.
- (sr_szablon_projekt.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 302.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 302.
-Package rerunfilecheck Info: File `sr_szablon_projekt.out' has not changed.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 309.
+ (SteRoP_2019_HURA_ALMM_1.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 309.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 309.
+Package rerunfilecheck Info: File `SteRoP_2019_HURA_ALMM_1.out' has not changed
+.
 (rerunfilecheck)             Checksum: C795660F2B732F896B819D0BC7BF16BB;1577.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 302.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 309.
  ) 
 Here is how much of TeX's memory you used:
- 14488 strings out of 493802
- 198193 string characters out of 3158063
- 507632 words of memory out of 3000000
- 17979 multiletter control sequences out of 15000+200000
+ 14493 strings out of 493801
+ 198370 string characters out of 3158049
+ 505632 words of memory out of 3000000
+ 17982 multiletter control sequences out of 15000+200000
  18112 words of font info for 43 fonts, out of 3000000 for 9000
  625 hyphenation exceptions out of 8191
- 33i,10n,51p,536b,426s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 33i,10n,51p,541b,350s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\Papa Smerf\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dp
 i600\ecbx1200.pk> <C:\Users\Papa Smerf\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour
 /jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Papa Smerf\AppData\Local\MiKTeX\2.9\
@@ -1108,9 +1113,9 @@ appen/ec/dpi600\ecti1200.pk> <C:\Users\Papa Smerf\AppData\Local\MiKTeX\2.9\font
 s/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk> <C:\Users\Papa Smerf\AppData\Local\
 MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1440.pk> <C:\Users\Papa Smerf
 \AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1728.pk>
-Output written on sr_szablon_projekt.pdf (8 pages, 333926 bytes).
+Output written on SteRoP_2019_HURA_ALMM_1.pdf (8 pages, 333320 bytes).
 PDF statistics:
- 498 PDF objects out of 1000 (max. 8388607)
- 46 named destinations out of 1000 (max. 500000)
+ 499 PDF objects out of 1000 (max. 8388607)
+ 49 named destinations out of 1000 (max. 500000)
  117 words of extra memory for PDF output out of 10000 (max. 10000000)
 
