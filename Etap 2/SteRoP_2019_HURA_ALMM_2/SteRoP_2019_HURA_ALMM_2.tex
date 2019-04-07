@@ -261,6 +261,8 @@ płytek PCB powinny znaleźć się tutaj ich widoki za zachowaniem skali.
 Można również dołączyć zdjęcia 
 elektroniki po uprzednim skompresowaniu, aby wynikowy rozmiar 
 skompilowanego dokumentu nie był za duży.
+\subsection{Regulacja prędkości napędu}
+Za pomocą potencjometru regulujemy wypełnienie sygnału PWM. Sygnał ten jest wzmacniany za pomocą tranzystora NPN i przekazywany do silnika DC.
 
 \begin{figure}[H]
 	\centering
@@ -285,34 +287,31 @@ skompilowanego dokumentu nie był za duży.
 
 Należy zawrzeć tutaj opis działania programu.
 Mile widziany diagram prezentujący pracę programu.
+\subsection{Schemat działania programu}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\textwidth]{figures/diagramPWM.png}
+		\caption{Schemat działania programu}
+		\label{fig:diagramPWM}
+	\end{figure}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.5\textwidth]{figures/obraz.png}
-	\caption{Diagram przepływu}
-	\label{fig:Program}
-\end{figure}
+\subsection{Funkcja obsługująca przerwanie timera 6}
+	\begin{lstlisting}[tabsize=2]
+	void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+	{
+		if(htim->Instance == TIM6)
+			HAL_ADC_Start_DMA(&hadc1, (uint32_t *)&adc_value, 1);
+	}
+	\end{lstlisting}
 
-Sekcję tą można podzielić na dodatkowe podsekcje w miarę potrzeb. 
-Do tego celu nalezy wykorzystać \textit{subsection}.
-
-W przypadku, dodania istotnego fragmentu kodu należy posłużyć się środowiskiem 
-lstlisting:
-
+\subsection{Funkcja obsługująca przerwanie ADC}
 \begin{lstlisting}[tabsize=2]
-int foo(void){
-return 2;
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
+{
+	//pid_output = pid_calc(&pid, adc_value, set_value);
+	__HAL_TIM_SET_COMPARE(&htim2 , TIM_CHANNEL_1, adc_value);
 }
 \end{lstlisting}
-
-Przykładowy wzór (\ref{eq:Wzor}):
-\begin{equation}
-\label{eq:Wzor}
-\Theta = \int_t^{t+dt} \omega \, dt.	
-\end{equation}
-
-Przykładowa pozycja bibliograficzna \cite{SR01} znajduje się 
-w pliku bibliografia.bib.
 
 %Obecne w dokumencie do etapu II oraz III (jeśli coś zostało niezrealizowane)
 \section{Zadania niezrealizowane}
