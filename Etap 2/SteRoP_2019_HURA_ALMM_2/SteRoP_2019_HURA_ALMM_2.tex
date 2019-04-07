@@ -1,0 +1,375 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = pl_PL
+
+% $Id:$
+
+%Author: Wojciech Domski
+%Szablon do ząłożeń projektowych, raportu i dokumentacji z steorwników robotów
+%Wersja v.1.0.0
+%
+
+
+%% Konfiguracja:
+\newcommand{\kurs}{Sterowniki robot\'{o}w}
+\newcommand{\formakursu}{Projekt}
+
+%odkomentuj właściwy typ projektu, a pozostałe zostaw zakomentowane
+%\newcommand{\doctype}{Za\l{}o\.{z}enia projektowe} %etap I
+\newcommand{\doctype}{Raport} %etap II
+%\newcommand{\doctype}{Dokumentacja} %etap III
+
+%wpisz nazwę projektu
+\newcommand{\projectname}{Humanistycznie upo\'sledzony robot akrobatyczny}
+
+%wpisz akronim projektu
+\newcommand{\acronim}{HURA}
+
+%wpisz Imię i nazwisko oraz numer albumu
+\newcommand{\osobaA}{Albert \textsc{Lis}, 235534}
+%w przypadku projektu jednoosobowego usuń zawartość nowej komendy
+\newcommand{\osobaB}{Micha\l{} \textsc{Moru\'n}, 235986}
+
+%wpisz termin w formie, jak poniżej dzień, parzystość, godzina
+\newcommand{\termin}{sr TP15 }
+
+%wpisz imię i nazwisko prowadzącego
+\newcommand{\prowadzacy}{mgr in\.{z}. Wojciech \textsc{Domski}}
+
+\documentclass[10pt, a4paper]{article}
+
+\include{preambula}
+	
+\begin{document}
+
+\def\tablename{Tabela}	%zmienienie nazwy tabel z Tablica na Tabela
+
+\begin{titlepage}
+	\begin{center}
+		\textsc{\LARGE \formakursu}\\[1cm]		
+		\textsc{\Large \kurs}\\[0.5cm]		
+		\rule{\textwidth}{0.08cm}\\[0.4cm]
+		{\huge \bfseries \doctype}\\[1cm]
+		{\huge \bfseries \projectname}\\[0.5cm]
+		{\huge \bfseries \acronim}\\[0.4cm]
+		\rule{\textwidth}{0.08cm}\\[1cm]
+		
+		\begin{flushright} \large
+		\emph{Skład grupy:}\\
+		\osobaA\\
+		\osobaB\\[0.4cm]
+		
+		\emph{Termin: }\termin\\[0.4cm]
+
+		\emph{Prowadzący:} \\
+		\prowadzacy \\
+		
+		\end{flushright}
+		
+		\vfill
+		
+		{\large \today}
+	\end{center}	
+\end{titlepage}
+
+\newpage
+\tableofcontents
+\newpage
+
+%Obecne we wszystkich dokumentach
+\section{Opis projektu}
+\label{sec:OpisProjektu}
+
+Celem projektu jest zbudowanie zdalnie sterowanego robota jezdnego. Robot będzie sterowany za pomocą akcelerometru w telefonie. Dane będą przesyłanie za pomocą Wi-Fi lub Bluetooth. Regulacja prędkości będzie się odbywać za pomocą regulatora PID. Dane o prędkości będą pobierane z enkoderów znajdujących się w kołach robota. Opcjonalnie robot będzie wyświetlał szczegółowe dane o swoim stanie wewnętrznym za pomocą wbudowanego w płytkę z mikrokontrolerem wyświetlacza LCD.
+\newline
+\newline
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{figures/diagram.png}
+	\caption{Architektura systemu}
+	\label{fig:Architektura}
+\end{figure}
+
+%Obecne we wszystkich dokumentach
+\section{Konfiguracja mikrokontrolera}
+
+Tutaj powinna znaleźć się konfigurację poszczególnych peryferiów 
+mikrokontrolera -- jeśli wykorzystywany jest np. ADC to należy 
+podać jego konfigurację nie zapominając o DMA jeśli jest 
+wykorzystywane. Proszę wzorować się na raporcie wygenerowanym 
+z programu STM32CubeMx 
+(plik PDF i TXT, Project -> Generate Report Ctrl+R). 
+W pliku PDF jest to rozdział \textit{IPs} and \textit{Middleware Configuration}. 
+Należy umieścić uproszczoną konfiguracje peryferiów w formie 
+tabelek (najistotniejsze parametry + parametry zmienione, pogrubione).
+Dodatkowo w pliku tekstowym (TXT) znajduje się konfiguracja pinów 
+mikrokontrolera, którą również należy zamieścić w raporcie.
+
+W przypadku, gdy projekt zakłada wykorzystanie większej liczby modułów
+sekcję tą należy podzielić na odrębne podsekcje.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{figures/obraz.png}
+	\caption{Konfiguracja wyjść mikrokontrolera w programie STM32CubeMX}
+	\label{fig:KonfiguracjaMikrokontrolera}
+\end{figure}
+
+\newpage
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textheight,angle=90]{figures/zegar.png}
+	\caption{Konfiguracja zegarów mikrokontrolera}
+	\label{fig:KonfiguracjaZegara}
+\end{figure}
+
+%Obecne we wszystkich dokumentach
+\subsection{Konfiguracja pinów}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|l|l|l|}
+		\hline
+		PIN & Tryb pracy & Funkcja/etykieta\\
+		\hline
+		PC14 & OSC32\_IN*	RCC\_OSC32\_IN	&\\
+		PC15 & OSC32\_OUT*	RCC\_OSC32\_OUT	&\\
+		PH0&  OSC\_IN*	RCC\_OSC\_IN	&\\
+		PH1&  OSC\_OUT*&		RCC\_OSC\_OUT	\\
+		PD5&	USART2\_TX&	USART\_TX\\
+		PD6&	USART2\_RX&	USART\_RX\\
+		PE11&	TIM1\_CH2&	PWM\_SERVO\\
+		PA0&	ADC1\_IN5&	PWM\_INPUT\\
+		PA1&	GPIO\_Input&	JOY\_LEFT\\
+		PA2&	GPIO\_Input&	JOY\_RIGHT\\
+		PA3&	GPIO\_Input&	JOY\_UP\\
+		PA4& GPIO\_Input& JOY\_DOWN\\
+		PA5&	TIM2\_CH1&	PWM\_MOTOR\\
+		
+		
+		\hline
+	\end{tabular}
+	\caption{Konfiguracja pinów mikrokontrolera}
+\end{table}
+
+%Obecne we wszystkich dokumentach
+\subsection{USART}
+
+Przykładowa konfiguracja peryferium interfejsu szeregowego.
+Należy opisać do czego będzie wykorzystywany interfejs. 
+Zmiany, które odbiegają od standardowych w programie CubeMX 
+powinn być zaznaczone innym kolorem, jak to zostało pokazane 
+w tabeli \ref{tab:USART}.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|c|} \hline
+		\textbf{Parametr} & Wartość \\
+		\hline
+		\hline  \textbf{Baud Rate}&11520  \\\hline
+		\textbf{Word Length } & \textcolor{blue}{8 Bits (including parity)}\\\hline
+		\textbf{Parity} &  None\\
+		\hline
+		\textbf{Stop Bits}& 1\\
+		\hline
+	\end{tabular}
+	\caption{Konfiguracja peryferium USART}
+	\label{tab:USART}
+\end{table}
+
+\subsection{ADC 1}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|c|} \hline
+		\textbf{Parametr} & Wartość \\
+		\hline
+		\hline  \textbf{Resolution}&ADC 12-bit resolution  \\\hline
+		\textbf{DMA Continuous Requests} & \textcolor{blue}{Enabled}\\\hline
+		\textbf{Data Alignment} &  Right alignment\\
+		\hline
+		\textbf{Continuous Conversion Mode}& Disabled\\
+		\hline
+		\textbf{Channel}& Channel 5\\
+		\hline
+		\textbf{Sampling Time}& \textcolor{blue}{92.5 Cycles}\\
+		\hline
+	\end{tabular}
+	\caption{Konfiguracja peryferium ADC}
+	\label{tab:ADC}
+\end{table}
+
+\subsection{Timer 2}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|c|} \hline
+		\textbf{Parametr} & Wartość \\
+		\hline
+		\hline  \textbf{Clock Source}&Internal Clock  \\\hline
+		\textbf{Channel1} & PWM Generation CH1\\\hline
+		\textbf{Prescaler} & \textcolor{blue}{PWM\_PRESC}\\\hline
+		\textbf{Counter Mode} &  Up\\
+		\hline
+		\textbf{Counter Period}& \textcolor{blue}{PWM\_PERIOD}\\\hline
+		\textbf{Internal Clock Division}& No Division\\
+		\hline
+		\textbf{Mode}& PWM mode 1\\
+		\hline
+		\textbf{CH Polarity}& High\\
+		\hline
+	\end{tabular}
+	\caption{Konfiguracja peryferium Timer 2}
+	\label{tab:Timer2}
+\end{table}
+
+\subsection{Timer 6}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|c|} \hline
+		\textbf{Parametr} & Wartość \\
+		\hline
+		\hline
+		\textbf{Prescaler} & \textcolor{blue}{TIM6\_PRESC}\\\hline
+		\textbf{Counter Mode} &  Up\\
+		\hline
+		\textbf{Counter Period}& \textcolor{blue}{TIM6\_PERIOD}\\\hline
+		\textbf{Trigger Event Selection}& \textcolor{blue}{Update Event}\\
+		\hline
+	\end{tabular}
+	\caption{Konfiguracja peryferium Timer 6}
+	\label{tab:Timer6}
+\end{table}
+%Obecne w dokumencie do etapu II oraz III
+\section{Urządzenia zewnętrzne}
+
+Rozdział ten powinien zawierać opis i konfigurację wykorzystanych ukladów
+zewnętrznych, jak np. akcelerometr.
+
+????????
+
+%Obecne w dokumencie do etapu II oraz III
+\section{Projekt elektroniki}
+
+W przypadku, w którym projekt uwzględnia zastosowanie 
+dodatkowej elektroniki to wówczas jej opis powinien znaleźć się tutaj.
+Należy dołączyć schematy elektroniczne w formacie PDF 
+jako dodatek do dokumentu 
+za pomocą \textit{include}. Również w przypadku wytworzenia 
+płytek PCB powinny znaleźć się tutaj ich widoki za zachowaniem skali.
+Można również dołączyć zdjęcia 
+elektroniki po uprzednim skompresowaniu, aby wynikowy rozmiar 
+skompilowanego dokumentu nie był za duży.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{figures/PWM.png}
+	\caption{Schemat poglądowy regulacji prędkości obrotowej silnika}
+	\label{fig:KonfiguracjaPWM}
+\end{figure}
+
+%Obecne w dokumencie do etapu II oraz III
+\section{Konstrukcja mechaniczna}
+
+W przypadku, w którym projekt uwzględnia zastosowanie 
+mechaniki to wówczas jej opis powinien znaleźć się tutaj.
+Nie należy dzielić rysunków mechaniki na poszczególne rzuty, 
+wystarczy zamieścić wyrenderowane modele 3D.
+Można również dołączyć zdjęcia wykonanej 
+mechaniki po uprzednim skompresowaniu, aby wynikowy rozmiar 
+skompilowanego dokumentu nie był za duży.
+
+%Obecne w dokumencie do etapu II oraz III
+\section{Opis działania programu}
+
+Należy zawrzeć tutaj opis działania programu.
+Mile widziany diagram prezentujący pracę programu.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{figures/obraz.png}
+	\caption{Diagram przepływu}
+	\label{fig:Program}
+\end{figure}
+
+Sekcję tą można podzielić na dodatkowe podsekcje w miarę potrzeb. 
+Do tego celu nalezy wykorzystać \textit{subsection}.
+
+W przypadku, dodania istotnego fragmentu kodu należy posłużyć się środowiskiem 
+lstlisting:
+
+\begin{lstlisting}[tabsize=2]
+int foo(void){
+return 2;
+}
+\end{lstlisting}
+
+Przykładowy wzór (\ref{eq:Wzor}):
+\begin{equation}
+\label{eq:Wzor}
+\Theta = \int_t^{t+dt} \omega \, dt.	
+\end{equation}
+
+Przykładowa pozycja bibliograficzna \cite{SR01} znajduje się 
+w pliku bibliografia.bib.
+
+%Obecne w dokumencie do etapu II oraz III (jeśli coś zostało niezrealizowane)
+\section{Zadania niezrealizowane}
+
+Jeśli wszystkie zadania zostały realizowane to wówczas 
+ta sekcja powinna być usunięta w całości. W przeciwnym razie
+należy zawrzeć tutaj, jakie zadania zostały nie zrealizowane 
+oraz jaka była tego przyczyna.
+
+%Obecne we wszystkich dokumentach
+\section{Podsumowanie}
+
+Krótkie podsumowanie projektu
+
+\newpage
+\addcontentsline{toc}{section}{Bibilografia}
+\bibliography{bibliografia}
+\bibliographystyle{plabbrv}
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
