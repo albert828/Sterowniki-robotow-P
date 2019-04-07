@@ -92,21 +92,19 @@ Celem projektu jest zbudowanie zdalnie sterowanego robota jezdnego. Robot będzi
 
 %Obecne we wszystkich dokumentach
 \section{Konfiguracja mikrokontrolera}
-
-Tutaj powinna znaleźć się konfigurację poszczególnych peryferiów 
-mikrokontrolera -- jeśli wykorzystywany jest np. ADC to należy 
-podać jego konfigurację nie zapominając o DMA jeśli jest 
-wykorzystywane. Proszę wzorować się na raporcie wygenerowanym 
-z programu STM32CubeMx 
-(plik PDF i TXT, Project -> Generate Report Ctrl+R). 
-W pliku PDF jest to rozdział \textit{IPs} and \textit{Middleware Configuration}. 
-Należy umieścić uproszczoną konfiguracje peryferiów w formie 
-tabelek (najistotniejsze parametry + parametry zmienione, pogrubione).
-Dodatkowo w pliku tekstowym (TXT) znajduje się konfiguracja pinów 
-mikrokontrolera, którą również należy zamieścić w raporcie.
-
+\textcolor{red}{Tutaj powinna znaleźć się konfigurację poszczególnych peryferiów 
+	mikrokontrolera -- jeśli wykorzystywany jest np. ADC to należy 
+	podać jego konfigurację nie zapominając o DMA jeśli jest 
+	wykorzystywane. Proszę wzorować się na raporcie wygenerowanym 
+	z programu STM32CubeMx 
+	(plik PDF i TXT, Project -> Generate Report Ctrl+R). 
+	W pliku PDF jest to rozdział \textit{IPs} and \textit{Middleware Configuration}. 
+	Należy umieścić uproszczoną konfiguracje peryferiów w formie 
+	tabelek (najistotniejsze parametry + parametry zmienione, pogrubione).
+	Dodatkowo w pliku tekstowym (TXT) znajduje się konfiguracja pinów 
+	mikrokontrolera, którą również należy zamieścić w raporcie.
 W przypadku, gdy projekt zakłada wykorzystanie większej liczby modułów
-sekcję tą należy podzielić na odrębne podsekcje.
+sekcję tą należy podzielić na odrębne podsekcje.}
 
 \begin{figure}[H]
 	\centering
@@ -154,12 +152,11 @@ sekcję tą należy podzielić na odrębne podsekcje.
 
 %Obecne we wszystkich dokumentach
 \subsection{USART}
-
-Przykładowa konfiguracja peryferium interfejsu szeregowego.
-Należy opisać do czego będzie wykorzystywany interfejs. 
-Zmiany, które odbiegają od standardowych w programie CubeMX 
-powinn być zaznaczone innym kolorem, jak to zostało pokazane 
-w tabeli \ref{tab:USART}.
+\textcolor{red}{Przykładowa konfiguracja peryferium interfejsu szeregowego.
+	Należy opisać do czego będzie wykorzystywany interfejs. 
+	Zmiany, które odbiegają od standardowych w programie CubeMX 
+	powinn być zaznaczone innym kolorem, jak to zostało pokazane 
+	w tabeli \ref{tab:USART}.}
 
 \begin{table}[H]
 	\centering
@@ -243,24 +240,23 @@ w tabeli \ref{tab:USART}.
 \end{table}
 %Obecne w dokumencie do etapu II oraz III
 \section{Urządzenia zewnętrzne}
+\textcolor{red}{Rozdział ten powinien zawierać opis i konfigurację wykorzystanych ukladów
+	zewnętrznych, jak np. akcelerometr.}
 
-Rozdział ten powinien zawierać opis i konfigurację wykorzystanych ukladów
-zewnętrznych, jak np. akcelerometr.
 
 ????????
 
 %Obecne w dokumencie do etapu II oraz III
 \section{Projekt elektroniki}
-
-W przypadku, w którym projekt uwzględnia zastosowanie 
-dodatkowej elektroniki to wówczas jej opis powinien znaleźć się tutaj.
-Należy dołączyć schematy elektroniczne w formacie PDF 
-jako dodatek do dokumentu 
-za pomocą \textit{include}. Również w przypadku wytworzenia 
-płytek PCB powinny znaleźć się tutaj ich widoki za zachowaniem skali.
-Można również dołączyć zdjęcia 
-elektroniki po uprzednim skompresowaniu, aby wynikowy rozmiar 
-skompilowanego dokumentu nie był za duży.
+\textcolor{red}{W przypadku, w którym projekt uwzględnia zastosowanie 
+	dodatkowej elektroniki to wówczas jej opis powinien znaleźć się tutaj.
+	Należy dołączyć schematy elektroniczne w formacie PDF 
+	jako dodatek do dokumentu 
+	za pomocą \textit{include}. Również w przypadku wytworzenia 
+	płytek PCB powinny znaleźć się tutaj ich widoki za zachowaniem skali.
+	Można również dołączyć zdjęcia 
+	elektroniki po uprzednim skompresowaniu, aby wynikowy rozmiar 
+	skompilowanego dokumentu nie był za duży.}
 \subsection{Regulacja prędkości napędu}
 Za pomocą potencjometru regulujemy wypełnienie sygnału PWM. Sygnał ten jest wzmacniany za pomocą tranzystora NPN i przekazywany do silnika DC.
 
@@ -273,20 +269,19 @@ Za pomocą potencjometru regulujemy wypełnienie sygnału PWM. Sygnał ten jest 
 
 %Obecne w dokumencie do etapu II oraz III
 \section{Konstrukcja mechaniczna}
-
-W przypadku, w którym projekt uwzględnia zastosowanie 
-mechaniki to wówczas jej opis powinien znaleźć się tutaj.
-Nie należy dzielić rysunków mechaniki na poszczególne rzuty, 
-wystarczy zamieścić wyrenderowane modele 3D.
-Można również dołączyć zdjęcia wykonanej 
-mechaniki po uprzednim skompresowaniu, aby wynikowy rozmiar 
-skompilowanego dokumentu nie był za duży.
+\textcolor{red}{W przypadku, w którym projekt uwzględnia zastosowanie 
+	mechaniki to wówczas jej opis powinien znaleźć się tutaj.
+	Nie należy dzielić rysunków mechaniki na poszczególne rzuty, 
+	wystarczy zamieścić wyrenderowane modele 3D.
+	Można również dołączyć zdjęcia wykonanej 
+	mechaniki po uprzednim skompresowaniu, aby wynikowy rozmiar 
+	skompilowanego dokumentu nie był za duży.}
 
 %Obecne w dokumencie do etapu II oraz III
 \section{Opis działania programu}
+\textcolor{red}{Należy zawrzeć tutaj opis działania programu.
+	Mile widziany diagram prezentujący pracę programu.}
 
-Należy zawrzeć tutaj opis działania programu.
-Mile widziany diagram prezentujący pracę programu.
 \subsection{Schemat działania programu}
 	\begin{figure}[H]
 		\centering
@@ -315,16 +310,16 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 
 %Obecne w dokumencie do etapu II oraz III (jeśli coś zostało niezrealizowane)
 \section{Zadania niezrealizowane}
-
-Jeśli wszystkie zadania zostały realizowane to wówczas 
-ta sekcja powinna być usunięta w całości. W przeciwnym razie
-należy zawrzeć tutaj, jakie zadania zostały nie zrealizowane 
-oraz jaka była tego przyczyna.
+\textcolor{red}{Jeśli wszystkie zadania zostały realizowane to wówczas 
+	ta sekcja powinna być usunięta w całości. W przeciwnym razie
+	należy zawrzeć tutaj, jakie zadania zostały nie zrealizowane 
+	oraz jaka była tego przyczyna.
+}
 
 %Obecne we wszystkich dokumentach
 \section{Podsumowanie}
+\textcolor{red}{Krótkie podsumowanie projektu}
 
-Krótkie podsumowanie projektu
 
 \newpage
 \addcontentsline{toc}{section}{Bibilografia}
