@@ -152,29 +152,6 @@ sekcję tą należy podzielić na odrębne podsekcje.}
 \end{table}
 
 %Obecne we wszystkich dokumentach
-\subsection{USART}
-\textcolor{red}{Przykładowa konfiguracja peryferium interfejsu szeregowego.
-	Należy opisać do czego będzie wykorzystywany interfejs. 
-	Zmiany, które odbiegają od standardowych w programie CubeMX 
-	powinn być zaznaczone innym kolorem, jak to zostało pokazane 
-	w tabeli \ref{tab:USART}.}
-
-\begin{table}[H]
-	\centering
-	\begin{tabular}{|l|c|} \hline
-		\textbf{Parametr} & Wartość \\
-		\hline
-		\hline  \textbf{Baud Rate}&11520  \\\hline
-		\textbf{Word Length } & \textcolor{blue}{8 Bits (including parity)}\\\hline
-		\textbf{Parity} &  None\\
-		\hline
-		\textbf{Stop Bits}& 1\\
-		\hline
-	\end{tabular}
-	\caption{Konfiguracja peryferium USART}
-	\label{tab:USART}
-\end{table}
-
 \subsection{ADC 1}
 
 \begin{table}[H]
@@ -273,16 +250,13 @@ sekcję tą należy podzielić na odrębne podsekcje.}
 
 %Obecne w dokumencie do etapu II oraz III
 \section{Projekt elektroniki}
-\textcolor{red}{W przypadku, w którym projekt uwzględnia zastosowanie 
-	dodatkowej elektroniki to wówczas jej opis powinien znaleźć się tutaj.
-}
-	
+	\subsection{Schemat elektryczny}
 	\begin{figure}[H]
-	\centering
-	\includegraphics[width=1\textwidth]{figures/schemeit-project.png}
-	\caption{Schemat elektryczny}
-	\label{fig:Schemat elektryczny}
-\end{figure}
+		\centering
+		\includegraphics[width=1\textwidth]{figures/schemeit-project.png}
+		\caption{Schemat elektryczny}
+		\label{fig:Schemat elektryczny}
+	\end{figure}
 	
 \subsection{Regulacja prędkości napędu}
 Za pomocą potencjometru regulujemy wypełnienie sygnału PWM. Sygnał ten jest wzmacniany za pomocą tranzystora NPN i przekazywany do silnika DC.
@@ -306,8 +280,6 @@ Za pomocą potencjometru regulujemy wypełnienie sygnału PWM. Sygnał ten jest 
 
 %Obecne w dokumencie do etapu II oraz III
 \section{Opis działania programu}
-\textcolor{red}{Należy zawrzeć tutaj opis działania programu.
-	Mile widziany diagram prezentujący pracę programu.}
 
 \subsection{Schemat działania programu}
 	\begin{figure}[H]
@@ -347,6 +319,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 \section{Podsumowanie}
 \textcolor{red}{Krótkie podsumowanie projektu}
 
+Udało się zrealizować większość zadań. Nastąpiły drobne zmiany koncepcyjne jak użycie potencjometru do regulacji prędkości obrotowej napędu. To będzie wymagać mniejszej ingerencji gdy będziemy projektować regulator PID.
 
 \newpage
 \addcontentsline{toc}{section}{Bibilografia}

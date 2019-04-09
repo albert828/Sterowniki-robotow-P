@@ -16,16 +16,12 @@
   *
   ******************************************************************************
   */
-//Kp = 1,2*5/0.5 = 12; Ki =
 /* USER CODE END Header */
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "adc.h"
-#include "dma.h"
 #include "tim.h"
 #include "gpio.h"
-#include "pid.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -61,34 +57,6 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-volatile uint16_t adc_value = 0;
-uint16_t set_value = 4095;
-//int32_t output = 4095;
-volatile int32_t pid_output = 0;
-int32_t counter = 0;
-uint16_t duty = 0;
-cpid_t pid;
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
-{
-	if(htim->Instance == TIM6)
-	{
-		HAL_ADC_Start_DMA(&hadc1, (uint32_t *)&adc_value, 1);
-	}
-}
-void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
-{
-  /* Prevent unused argument(s) compilation warning */
-	//HAL_ADC_Stop_DMA(&hadc1);
-	//counter++;
-	pid_output = pid_calc(&pid, adc_value, set_value);
-	//HAL_DAC_Start_DMA(&hdac1, DAC_CHANNEL_2, (uint32_t *)&pid_output, 1, DAC_ALIGN_12B_R);
-	__HAL_TIM_SET_COMPARE(&htim2 , TIM_CHANNEL_1, adc_value);
-
-  /* NOTE : This function should not be modified. When the callback is needed,
-            function HAL_ADC_ConvCpltCallback must be implemented in the user file.
-   */
-}
-//Dlaczego tu nie wchodzi???
 
 /* USER CODE END 0 */
 
@@ -96,6 +64,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
   * @brief  The application entry point.
   * @retval int
   */
+uint16_t duty = 500;
 int main(void)
 {
   /* USER CODE BEGIN 1 */
@@ -120,17 +89,11 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_DMA_Init();
-  MX_ADC1_Init();
-  MX_TIM6_Init();
-  MX_TIM7_Init();
-  MX_TIM2_Init();
+  MX_TIM4_Init();
+  HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_2);
+  __HAL_TIM_SET_COMPARE(&htim4 , TIM_CHANNEL_2, duty);
   /* USER CODE BEGIN 2 */
-  //pid_init(&pid, 0.5f, 0.0f, 0.0f, 10, 1);
-  HAL_TIM_Base_Start_IT(&htim6);
-  pid_init(&pid, 1.0, 0.0, 0, 0, 1);
-  __HAL_TIM_SET_COMPARE(&htim2 , TIM_CHANNEL_1, duty);
-    HAL_TIM_PWM_Start(&htim2 , TIM_CHANNEL_1) ;
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -138,7 +101,11 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
+	  duty += 5;
+	  if(duty > 125)
+		  duty = 75;
+	  __HAL_TIM_SET_COMPARE(&htim4 , TIM_CHANNEL_2, duty);
+	  HAL_Delay(500);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -152,20 +119,20 @@ void SystemClock_Config(void)
 {
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
-  RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
 
   /** Initializes the CPU, AHB and APB busses clocks 
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
-  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_MSI;
+  RCC_OscInitStruct.MSIState = RCC_MSI_ON;
+  RCC_OscInitStruct.MSICalibrationValue = 0;
+  RCC_OscInitStruct.MSIClockRange = RCC_MSIRANGE_6;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
-  RCC_OscInitStruct.PLL.PLLM = 2;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_MSI;
+  RCC_OscInitStruct.PLL.PLLM = 1;
   RCC_OscInitStruct.PLL.PLLN = 25;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV7;
   RCC_OscInitStruct.PLL.PLLQ = RCC_PLLQ_DIV2;
-  RCC_OscInitStruct.PLL.PLLR = RCC_PLLR_DIV4;
+  RCC_OscInitStruct.PLL.PLLR = RCC_PLLR_DIV2;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
@@ -180,19 +147,6 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_3) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_ADC;
-  PeriphClkInit.AdcClockSelection = RCC_ADCCLKSOURCE_PLLSAI1;
-  PeriphClkInit.PLLSAI1.PLLSAI1Source = RCC_PLLSOURCE_HSI;
-  PeriphClkInit.PLLSAI1.PLLSAI1M = 2;
-  PeriphClkInit.PLLSAI1.PLLSAI1N = 8;
-  PeriphClkInit.PLLSAI1.PLLSAI1P = RCC_PLLP_DIV7;
-  PeriphClkInit.PLLSAI1.PLLSAI1Q = RCC_PLLQ_DIV2;
-  PeriphClkInit.PLLSAI1.PLLSAI1R = RCC_PLLR_DIV2;
-  PeriphClkInit.PLLSAI1.PLLSAI1ClockOut = RCC_PLLSAI1_ADC1CLK;
-  if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
   {
     Error_Handler();
   }
