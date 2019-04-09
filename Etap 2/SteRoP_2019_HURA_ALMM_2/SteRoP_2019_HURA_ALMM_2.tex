@@ -108,7 +108,7 @@ sekcję tą należy podzielić na odrębne podsekcje.}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\textwidth]{figures/obraz.png}
+	\includegraphics[width=1\textwidth]{figures/schemat-1.jpg}
 	\caption{Konfiguracja wyjść mikrokontrolera w programie STM32CubeMX}
 	\label{fig:KonfiguracjaMikrokontrolera}
 \end{figure}
@@ -136,13 +136,14 @@ sekcję tą należy podzielić na odrębne podsekcje.}
 		PH1&  OSC\_OUT*&		RCC\_OSC\_OUT	\\
 		PD5&	USART2\_TX&	USART\_TX\\
 		PD6&	USART2\_RX&	USART\_RX\\
-		PE11&	TIM1\_CH2&	PWM\_SERVO\\
+		%PE11&	TIM1\_CH2&	PWM\_SERVO\\
 		PA0&	ADC1\_IN5&	PWM\_INPUT\\
 		PA1&	GPIO\_Input&	JOY\_LEFT\\
 		PA2&	GPIO\_Input&	JOY\_RIGHT\\
 		PA3&	GPIO\_Input&	JOY\_UP\\
 		PA4& GPIO\_Input& JOY\_DOWN\\
 		PA5&	TIM2\_CH1&	PWM\_MOTOR\\
+		PB7&    TIM4\_CH2&	PWM\_SERVO\\
 		
 		
 		\hline
@@ -220,6 +221,30 @@ sekcję tą należy podzielić na odrębne podsekcje.}
 	\label{tab:Timer2}
 \end{table}
 
+\subsection{Timer 4}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|c|} \hline
+		\textbf{Parametr} & Wartość \\
+		\hline
+		\hline  \textbf{Clock Source}&Internal Clock  \\\hline
+		\textbf{Channel} & PWM Generation CH2\\\hline
+		\textbf{Prescaler} & \textcolor{blue}{999}\\\hline
+		\textbf{Counter Mode} &  Up\\
+		\hline
+		\textbf{Counter Period}& \textcolor{blue}{999}\\\hline
+		\textbf{Internal Clock Division}& No Division\\
+		\hline
+		\textbf{Mode}& PWM mode 1\\
+		\hline
+		\textbf{CH Polarity}& High\\
+		\hline
+	\end{tabular}
+	\caption{Konfiguracja peryferium Timer 4}
+	\label{tab:Timer4}
+\end{table}
+
 \subsection{Timer 6}
 
 \begin{table}[H]
@@ -250,19 +275,21 @@ sekcję tą należy podzielić na odrębne podsekcje.}
 \section{Projekt elektroniki}
 \textcolor{red}{W przypadku, w którym projekt uwzględnia zastosowanie 
 	dodatkowej elektroniki to wówczas jej opis powinien znaleźć się tutaj.
-	Należy dołączyć schematy elektroniczne w formacie PDF 
-	jako dodatek do dokumentu 
-	za pomocą \textit{include}. Również w przypadku wytworzenia 
-	płytek PCB powinny znaleźć się tutaj ich widoki za zachowaniem skali.
-	Można również dołączyć zdjęcia 
-	elektroniki po uprzednim skompresowaniu, aby wynikowy rozmiar 
-	skompilowanego dokumentu nie był za duży.}
+}
+	
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{figures/schemeit-project.png}
+	\caption{Schemat elektryczny}
+	\label{fig:Schemat elektryczny}
+\end{figure}
+	
 \subsection{Regulacja prędkości napędu}
 Za pomocą potencjometru regulujemy wypełnienie sygnału PWM. Sygnał ten jest wzmacniany za pomocą tranzystora NPN i przekazywany do silnika DC.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\textwidth]{figures/PWM.png}
+	\includegraphics[width=0.8\textwidth]{figures/pwm.png}
 	\caption{Schemat poglądowy regulacji prędkości obrotowej silnika}
 	\label{fig:KonfiguracjaPWM}
 \end{figure}
