@@ -92,19 +92,6 @@ Celem projektu jest zbudowanie zdalnie sterowanego robota jezdnego. Robot będzi
 
 %Obecne we wszystkich dokumentach
 \section{Konfiguracja mikrokontrolera}
-\textcolor{red}{Tutaj powinna znaleźć się konfigurację poszczególnych peryferiów 
-	mikrokontrolera -- jeśli wykorzystywany jest np. ADC to należy 
-	podać jego konfigurację nie zapominając o DMA jeśli jest 
-	wykorzystywane. Proszę wzorować się na raporcie wygenerowanym 
-	z programu STM32CubeMx 
-	(plik PDF i TXT, Project -> Generate Report Ctrl+R). 
-	W pliku PDF jest to rozdział \textit{IPs} and \textit{Middleware Configuration}. 
-	Należy umieścić uproszczoną konfiguracje peryferiów w formie 
-	tabelek (najistotniejsze parametry + parametry zmienione, pogrubione).
-	Dodatkowo w pliku tekstowym (TXT) znajduje się konfiguracja pinów 
-	mikrokontrolera, którą również należy zamieścić w raporcie.
-W przypadku, gdy projekt zakłada wykorzystanie większej liczby modułów
-sekcję tą należy podzielić na odrębne podsekcje.}
 
 \begin{figure}[H]
 	\centering
@@ -241,12 +228,10 @@ sekcję tą należy podzielić na odrębne podsekcje.}
 	\label{tab:Timer6}
 \end{table}
 %Obecne w dokumencie do etapu II oraz III
-\section{Urządzenia zewnętrzne}
-\textcolor{red}{Rozdział ten powinien zawierać opis i konfigurację wykorzystanych ukladów
-	zewnętrznych, jak np. akcelerometr.}
+%\section{Urządzenia zewnętrzne}
+%\textcolor{red}{Rozdział ten powinien zawierać opis i konfigurację %wykorzystanych ukladów
+%	zewnętrznych, jak np. akcelerometr.}
 
-
-????????
 
 %Obecne w dokumencie do etapu II oraz III
 \section{Projekt elektroniki}
@@ -270,13 +255,20 @@ Za pomocą potencjometru regulujemy wypełnienie sygnału PWM. Sygnał ten jest 
 
 %Obecne w dokumencie do etapu II oraz III
 \section{Konstrukcja mechaniczna}
-\textcolor{red}{W przypadku, w którym projekt uwzględnia zastosowanie 
-	mechaniki to wówczas jej opis powinien znaleźć się tutaj.
-	Nie należy dzielić rysunków mechaniki na poszczególne rzuty, 
-	wystarczy zamieścić wyrenderowane modele 3D.
-	Można również dołączyć zdjęcia wykonanej 
-	mechaniki po uprzednim skompresowaniu, aby wynikowy rozmiar 
-	skompilowanego dokumentu nie był za duży.}
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{figures/20190410_135905.jpg}
+		\caption{Zdjęcie części mechanicznej nr 1}
+		\label{fig:Zdjęcie części mechanicznej nr 1}
+	\end{figure}
+	
+		\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{figures/20190410_135853.jpg}
+		\caption{Zdjęcie części mechanicznej nr 2}
+		\label{fig:Zdjęcie części mechanicznej nr 2}
+	\end{figure}
 
 %Obecne w dokumencie do etapu II oraz III
 \section{Opis działania programu}
@@ -309,15 +301,10 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 
 %Obecne w dokumencie do etapu II oraz III (jeśli coś zostało niezrealizowane)
 \section{Zadania niezrealizowane}
-\textcolor{red}{Jeśli wszystkie zadania zostały realizowane to wówczas 
-	ta sekcja powinna być usunięta w całości. W przeciwnym razie
-	należy zawrzeć tutaj, jakie zadania zostały nie zrealizowane 
-	oraz jaka była tego przyczyna.
-}
+Nie zostało zrealizowane przekazanie napędu z silnika i serwomechanizmu na mechanizm napędowy oraz na ten służący do skręcania. W pierwszym przypadku jest to spowodowane brakiem czasu, wynikający ze zbyt długim poszukiwaniem rozwiązania na problem przeniesienia napędu z silnika do przekładni, natomiast w drugim tym, że wał serwomechanizmu ma stępione zębatki co uniemożliwia przekazanie jakiejkolwiek siły na dalszy podzespół.
 
 %Obecne we wszystkich dokumentach
 \section{Podsumowanie}
-\textcolor{red}{Krótkie podsumowanie projektu}
 
 Udało się zrealizować większość zadań. Nastąpiły drobne zmiany koncepcyjne jak użycie potencjometru do regulacji prędkości obrotowej napędu. To będzie wymagać mniejszej ingerencji gdy będziemy projektować regulator PID.
 
