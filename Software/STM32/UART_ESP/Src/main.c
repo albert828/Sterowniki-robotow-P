@@ -35,14 +35,14 @@ int _write(int file, char *s, int len)
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 uint8_t Received[3];
-uint16_t value;
+int16_t value;
 char axis;
 char sign;
 //Co do chuja ze taka kolejnosc musi byc????!!!!
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 	 axis = (char)(Received[2]);
 	 sign = (char)(Received[0]);
-	 value = (int16_t)(Received[1]);
+	 value = (uint8_t)(Received[1]);
 	 HAL_UART_Receive_IT(&huart2, Received, 3);
 }
 

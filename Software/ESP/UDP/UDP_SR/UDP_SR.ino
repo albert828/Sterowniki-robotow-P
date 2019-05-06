@@ -5,6 +5,9 @@ const char* ssid = "Papa Smerf";
 const char* password = "szybkiinternet";
 unsigned int localUdpPort = 4210;  // local port to listen on
 char incomingPacket[255];  // buffer for incoming packets
+char axis, sign;
+int16_t value;
+uint8_t convertedValue;
 WiFiUDP Udp;
 
 void setup()
@@ -31,12 +34,32 @@ void loop()
   if (packetSize)
   {
     // receive incoming UDP packets
-    Serial.printf("Received %d bytes from %s, port %d\n", packetSize, Udp.remoteIP().toString().c_str(), Udp.remotePort());
+    //Serial.printf("Received %d bytes from %s, port %d\n", packetSize, Udp.remoteIP().toString().c_str(), Udp.remotePort());
     int len = Udp.read(incomingPacket, 255);
     if (len > 0)
     {
       incomingPacket[len] = 0;
     }
-    Serial.printf("UDP packet contents: %s\n", incomingPacket);
+    axis = incomingPacket[0];
+    value = atoi(&incomingPacket[1]);
+    
+    if(value < 0)
+    {
+      sign = '-';
+      convertedValue = abs(value);
+    }
+    else
+    {
+      sign = '+';
+      convertedValue = value;
+    }
+
+    Serial.write(axis);
+    Serial.write(sign);
+    Serial.write(convertedValue);
+    //Serial.printf("UDP packet contents: %s\n", incomingPacket);
+    //Serial.printf("Axis = %c ", incomingPacket[0]);
+    //Serial.printf("Value = %d ", atoi(&incomingPacket[1]));
+    //Serial.println();
   }
 }
