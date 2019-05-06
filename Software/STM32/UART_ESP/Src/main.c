@@ -34,11 +34,11 @@ int _write(int file, char *s, int len)
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-uint8_t Received[3];
-int16_t value;
-char axis;
-char sign;
-//Co do chuja ze taka kolejnosc musi byc????!!!!
+volatile uint8_t Received[3];
+volatile int16_t value;
+volatile char axis;
+volatile char sign;
+
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 	 axis = (char)(Received[2]);
 	 sign = (char)(Received[0]);
