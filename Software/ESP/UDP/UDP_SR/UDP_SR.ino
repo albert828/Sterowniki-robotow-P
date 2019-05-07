@@ -16,7 +16,6 @@ WiFiUDP Udp;
 void setup()
 {
   Serial.begin(115200);
-  //Serial.println();
   //Serial.printf("Connecting to %s ", ssid);
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED)
@@ -36,7 +35,6 @@ void loop()
   int packetSize = Udp.parsePacket();
   if (packetSize)
   {
-    // receive incoming UDP packets
     //Serial.printf("Received %d bytes from %s, port %d\n", packetSize, Udp.remoteIP().toString().c_str(), Udp.remotePort());
     int len = Udp.read(incomingPacket, 255);
     if (len > 0)
@@ -90,12 +88,5 @@ void loop()
       Serial.printf("%c%c%c", axis1,sign1,convertedValue1);
       previousTime1 = actualTime;
     }
-    //Serial.write(axis);
-    //Serial.write(sign);
-    //Serial.write(convertedValue);
-    //Serial.printf("UDP packet contents: %s\n", incomingPacket);
-    //Serial.printf("Axis = %c ", incomingPacket[0]);
-    //Serial.printf("Value = %d ", atoi(&incomingPacket[1]));
-    //Serial.println();
   }
 }
