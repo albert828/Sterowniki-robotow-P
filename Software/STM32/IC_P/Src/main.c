@@ -58,8 +58,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 	 value = (uint8_t)(Received[nrValue]);
 	 if(bsync < 10)
 		 sync();
-	 //HAL_UART_Receive_IT(&huart2, Received, BUFSIZE);
-	 HAL_UART_Receive_IT(&huart2, &Received, BUFSIZE);
+	 HAL_UART_Receive_DMA(&huart2, &Received, BUFSIZE);
 }
 
 int main(void)
@@ -81,7 +80,7 @@ int main(void)
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
 
-  HAL_UART_Receive_IT(&huart2, &Received, 1);
+  HAL_UART_Receive_DMA(&huart2, &Received, 1);
 
   while (1)
   {
