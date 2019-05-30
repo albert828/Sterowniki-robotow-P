@@ -101,16 +101,20 @@ int main(void)
   /* USER CODE BEGIN Init */
 
 
-  void Jazda()
+  void Jazda(int pwm_duty)
   {
 	  if(sign == '+' & axis == 'x')
 	  {
-		  HAL_GPIO_WritePin(DO_PRZODU_GPIO_Port,DO_PRZODU_Pin, GPIO_PIN_RESET);
+		  pwm_duty = (pwm_duty + 1000) % 10000;
+		  __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, pwm_duty);
+		  //HAL_GPIO_WritePin(DO_PRZODU_GPIO_Port,DO_PRZODU_Pin, GPIO_PIN_RESET);
 	  }
 
 	  if(sign == '-' & axis == 'x')
 	  {
-		  HAL_GPIO_WritePin(DO_TYLU_GPIO_Port, DO_TYLU_Pin, GPIO_PIN_RESET);
+		  pwm_duty = (pwm_duty + 1000) % 10000;
+		  __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, pwm_duty);
+		  //HAL_GPIO_WritePin(DO_TYLU_GPIO_Port, DO_TYLU_Pin, GPIO_PIN_RESET);
 	  }
   }
 
@@ -163,9 +167,9 @@ int main(void)
     /* USER CODE END WHILE */
 	  if(flag == 1)
 	  {
-		  pwm_dutyL = (pwm_dutyL + 1000) % 10000;
-		  __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, pwm_dutyL);
-		  __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, pwm_dutyP);
+
+
+
 		  HAL_GPIO_TogglePin (LD_R_GPIO_Port, LD_R_Pin );
 		  printf( "Wykryto: %d \r \n", period/1000 );
 		  flag = 0;
