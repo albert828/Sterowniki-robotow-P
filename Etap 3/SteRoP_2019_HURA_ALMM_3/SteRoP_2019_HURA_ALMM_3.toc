@@ -1,0 +1,23 @@
+\babel@toc {polish}{}
+\contentsline {section}{\numberline {1}Opis projektu}{2}{section.1}% 
+\contentsline {section}{\numberline {2}Konfiguracja mikrokontrolera}{3}{section.2}% 
+\contentsline {subsection}{\numberline {2.1}Konfiguracja pin\IeC {\'o}w}{5}{subsection.2.1}% 
+\contentsline {subsection}{\numberline {2.2}USART}{5}{subsection.2.2}% 
+\contentsline {subsection}{\numberline {2.3}Timer 2}{5}{subsection.2.3}% 
+\contentsline {subsection}{\numberline {2.4}Timer 2}{5}{subsection.2.4}% 
+\contentsline {subsection}{\numberline {2.5}Timer 5}{6}{subsection.2.5}% 
+\contentsline {section}{\numberline {3}Urz\IeC {\k a}dzenia zewn\IeC {\k e}trzne}{6}{section.3}% 
+\contentsline {subsection}{\numberline {3.1}Modu\IeC {\l } Wi-Fi ESP8266}{6}{subsection.3.1}% 
+\contentsline {section}{\numberline {4}Projekt elektroniki}{6}{section.4}% 
+\contentsline {subsection}{\numberline {4.1}Po\IeC {\l }\IeC {\k a}czenie pomi\IeC {\k e}dzy STM32 a modu\IeC {\l }em WiFi}{6}{subsection.4.1}% 
+\contentsline {subsection}{\numberline {4.2}Schemat po\IeC {\l }\IeC {\k a}czenia z serwomechanizmem}{7}{subsection.4.2}% 
+\contentsline {subsection}{\numberline {4.3}Schemat po\IeC {\l }\IeC {\k a}czenia z silnikiem}{7}{subsection.4.3}% 
+\contentsline {subsection}{\numberline {4.4}Schemat po\IeC {\l }\IeC {\k a}czenia z enkoderem}{8}{subsection.4.4}% 
+\contentsline {section}{\numberline {5}Konstrukcja mechaniczna}{8}{section.5}% 
+\contentsline {section}{\numberline {6}Opis dzia\IeC {\l }ania programu}{9}{section.6}% 
+\contentsline {subsection}{\numberline {6.1}Schemat dzia\IeC {\l }ania programu}{9}{subsection.6.1}% 
+\contentsline {subsection}{\numberline {6.2}Funkcja obs\IeC {\l }uguj\IeC {\k a}ca przerwanie timera 6}{9}{subsection.6.2}% 
+\contentsline {subsection}{\numberline {6.3}Funkcja obs\IeC {\l }uguj\IeC {\k a}ca przerwanie USART}{9}{subsection.6.3}% 
+\contentsline {section}{\numberline {7}Zadania niezrealizowane}{9}{section.7}% 
+\contentsline {section}{\numberline {8}Podsumowanie}{10}{section.8}% 
+\contentsline {section}{Bibilografia}{11}{section.8}% 

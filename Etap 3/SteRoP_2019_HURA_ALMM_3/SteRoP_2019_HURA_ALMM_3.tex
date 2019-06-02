@@ -1,0 +1,399 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = pl_PL
+
+% $Id:$
+
+%Author: Wojciech Domski
+%Szablon do ząłożeń projektowych, raportu i dokumentacji z steorwników robotów
+%Wersja v.1.0.0
+%
+
+
+%% Konfiguracja:
+\newcommand{\kurs}{Sterowniki robot\'{o}w}
+\newcommand{\formakursu}{Projekt}
+
+%odkomentuj właściwy typ projektu, a pozostałe zostaw zakomentowane
+%\newcommand{\doctype}{Za\l{}o\.{z}enia projektowe} %etap I
+%\newcommand{\doctype}{Raport} %etap II
+\newcommand{\doctype}{Dokumentacja} %etap III
+
+%wpisz nazwę projektu
+\newcommand{\projectname}{Humanistycznie upo\'sledzony robot akrobatyczny}
+
+%wpisz akronim projektu
+\newcommand{\acronim}{HURA}
+
+%wpisz Imię i nazwisko oraz numer albumu
+\newcommand{\osobaA}{Albert \textsc{Lis}, 235534}
+%w przypadku projektu jednoosobowego usuń zawartość nowej komendy
+\newcommand{\osobaB}{Micha\l{} \textsc{Moru\'n}, 235986}
+
+%wpisz termin w formie, jak poniżej dzień, parzystość, godzina
+\newcommand{\termin}{sr TP15 }
+
+%wpisz imię i nazwisko prowadzącego
+\newcommand{\prowadzacy}{mgr in\.{z}. Wojciech \textsc{Domski}}
+
+\documentclass[10pt, a4paper]{article}
+
+\include{preambula}
+	
+\begin{document}
+
+\def\tablename{Tabela}	%zmienienie nazwy tabel z Tablica na Tabela
+
+\begin{titlepage}
+	\begin{center}
+		\textsc{\LARGE \formakursu}\\[1cm]		
+		\textsc{\Large \kurs}\\[0.5cm]		
+		\rule{\textwidth}{0.08cm}\\[0.4cm]
+		{\huge \bfseries \doctype}\\[1cm]
+		{\huge \bfseries \projectname}\\[0.5cm]
+		{\huge \bfseries \acronim}\\[0.4cm]
+		\rule{\textwidth}{0.08cm}\\[1cm]
+		
+		\begin{flushright} \large
+		\emph{Skład grupy:}\\
+		\osobaA\\
+		\osobaB\\[0.4cm]
+		
+		\emph{Termin: }\termin\\[0.4cm]
+
+		\emph{Prowadzący:} \\
+		\prowadzacy \\
+		
+		\end{flushright}
+		
+		\vfill
+		
+		{\large \today}
+	\end{center}	
+\end{titlepage}
+
+\newpage
+\tableofcontents
+\newpage
+
+%Obecne we wszystkich dokumentach
+\section{Opis projektu}
+\label{sec:OpisProjektu}
+
+Celem projektu jest zbudowanie zdalnie sterowanego robota jezdnego. Robot będzie sterowany za pomocą akcelerometru w telefonie. Dane będą przesyłanie za pomocą Wi-Fi lub Bluetooth. Regulacja prędkości będzie się odbywać za pomocą regulatora PID. Dane o prędkości będą pobierane z enkoderów znajdujących się w kołach robota. Opcjonalnie robot będzie wyświetlał szczegółowe dane o swoim stanie wewnętrznym za pomocą wbudowanego w płytkę z mikrokontrolerem wyświetlacza LCD.
+\newline
+\newline
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{figures/diagram.png}
+	\caption{Architektura systemu}
+	\label{fig:Architektura}
+\end{figure}
+
+%Obecne we wszystkich dokumentach
+\section{Konfiguracja mikrokontrolera}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{figures/schemat-1.jpg}
+	\caption{Konfiguracja wyjść mikrokontrolera w programie STM32CubeMX}
+	\label{fig:KonfiguracjaMikrokontrolera}
+\end{figure}
+
+\newpage
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textheight,angle=90]{figures/zegar.png}
+	\caption{Konfiguracja zegarów mikrokontrolera}
+	\label{fig:KonfiguracjaZegara}
+\end{figure}
+
+%Obecne we wszystkich dokumentach
+\subsection{Konfiguracja pinów}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|l|l|l|}
+		\hline
+		PIN & Tryb pracy & Funkcja/etykieta\\
+		\hline
+		PC14 & OSC32\_IN*	RCC\_OSC32\_IN	&\\
+		PC15 & OSC32\_OUT*	RCC\_OSC32\_OUT	&\\
+		PH0&  OSC\_IN*	RCC\_OSC\_IN	&\\
+		PH1&  OSC\_OUT*&		RCC\_OSC\_OUT	\\
+		PA2&	USART2\_TX&	USART\_TX\\
+		PA3&	USART2\_RX&	USART\_RX\\
+		%PE11&	TIM1\_CH2&	PWM\_SERVO\\
+		PA5&	TIM2\_CH1&	PWM\_MOTOR\\
+		PB7&    TIM4\_CH2&	PWM\_SERVO\\
+		
+		
+		\hline
+	\end{tabular}
+	\caption{Konfiguracja pinów mikrokontrolera}
+\end{table}
+
+%Obecne we wszystkich dokumentach
+\subsection{USART}
+
+Interfejs jest wykorzystywany do komunikacji z modułem Wi-Fi (ESP8266). Moduł odbiera dane za pomocą interfejsu UDP i przekazuje je do mikrokontrolera STM32 za pomocą interfejsu komunikacji szeregowej.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|c|} \hline
+		\textbf{Parametr} & Wartość \\
+		\hline
+		\hline  \textbf{Baud Rate}&115200  \\\hline
+		\textbf{Word Length } & \textcolor{blue}{8 Bits (including parity)}\\\hline
+		\textbf{Parity} &  None\\
+		\hline
+		\textbf{Stop Bits}& 1\\
+		\hline
+	\end{tabular}
+	\caption{Konfiguracja peryferium USART}
+	\label{tab:USART}
+\end{table}
+
+\subsection{Timer 2}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|c|} \hline
+		\textbf{Parametr} & Wartość \\
+		\hline
+		\hline  \textbf{Clock Source}&Internal Clock  \\\hline
+		\textbf{Channel1} & PWM Generation CH1\\\hline
+		\textbf{Prescaler} & \textcolor{blue}{PWM\_PRESC}\\\hline
+		\textbf{Counter Mode} &  Up\\
+		\hline
+		\textbf{Counter Period}& \textcolor{blue}{PWM\_PERIOD}\\\hline
+		\textbf{Internal Clock Division}& No Division\\
+		\hline
+		\textbf{Mode}& PWM mode 1\\
+		\hline
+		\textbf{CH Polarity}& High\\
+		\hline
+	\end{tabular}
+	\caption{Konfiguracja peryferium Timer 2}
+	\label{tab:Timer2}
+\end{table}
+
+\subsection{Timer 2}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|c|} \hline
+		\textbf{Parametr} & Wartość \\
+		\hline
+		\hline  \textbf{Clock Source}&Internal Clock  \\\hline
+		\textbf{Channel} & PWM Generation CH2\\\hline
+		\textbf{Prescaler} & \textcolor{blue}{999}\\\hline
+		\textbf{Counter Mode} &  Up\\
+		\hline
+		\textbf{Counter Period}& \textcolor{blue}{999}\\\hline
+		\textbf{Internal Clock Division}& No Division\\
+		\hline
+		\textbf{Mode}& PWM mode 1\\
+		\hline
+		\textbf{CH Polarity}& High\\
+		\hline
+	\end{tabular}
+	\caption{Konfiguracja peryferium Timer 4}
+	\label{tab:Timer4}
+\end{table}
+
+\subsection{Timer 5}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|c|} \hline
+		\textbf{Parametr} & Wartość \\
+		\hline
+		\hline
+		\textbf{Prescaler} & \textcolor{blue}{TIM5\_PRESC}\\\hline
+		\textbf{Counter Mode} &  Up\\
+		\hline
+		\textbf{Counter Period}& \textcolor{blue}{TIM5\_PERIOD}\\\hline
+		\textbf{Trigger Event Selection}& \textcolor{blue}{Update Event}\\
+		\hline
+	\end{tabular}
+	\caption{Konfiguracja peryferium Timer 6}
+	\label{tab:Timer6}
+\end{table}
+%Obecne w dokumencie do etapu II oraz III
+\section{Urządzenia zewnętrzne}
+\textcolor{red}{Rozdział ten powinien zawierać opis i konfigurację %wykorzystanych ukladów
+	zewnętrznych, jak np. akcelerometr.}
+\subsection{Moduł Wi-Fi ESP8266}
+Moduł dobiera dane za pomocą protokołu UDP i przekazuje je odpowiednio sformatowane za pomocą portu szeregowego do mikrokontrolera STM32. Do oprogramowania modułu wykorzystano framework Arduino. \\
+Ustawienia komunikacji szeregowej:
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{|l|c|} \hline
+			\textbf{Parametr} & Wartość \\
+			\hline
+			\hline  \textbf{Baud Rate}&115200  \\\hline
+			\textbf{Word Length } & 8 Bits (including parity)\\\hline
+			\textbf{Parity} &  None\\
+			\hline
+			\textbf{Stop Bits}& 1\\
+			\hline
+		\end{tabular}
+		\caption{Konfiguracja peryferium UART w module Wi-Fi}
+		\label{tab:UARTWiFI}
+	\end{table}
+
+%Obecne w dokumencie do etapu II oraz III
+\section{Projekt elektroniki}
+	\subsection{Połączenie pomiędzy STM32 a modułem WiFi}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.8\textwidth]{figures/uart.png}
+			\caption{Połączenie STM32 z ESP8266}
+			\label{fig:UART}
+		\end{figure}
+	
+	\subsection{Schemat połączenia z serwomechanizmem}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{figures/schemeit-project.png}
+		\caption{Schemat elektryczny}
+		\label{fig:Schemat elektryczny}
+	\end{figure}
+	
+	\subsection{Schemat połączenia z silnikiem}
+	Za pomocą potencjometru regulujemy wypełnienie sygnału PWM. Sygnał ten jest wzmacniany za pomocą tranzystora NPN i przekazywany do silnika DC.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\textwidth]{figures/pwm.png}
+		\caption{Schemat poglądowy regulacji prędkości obrotowej silnika}
+		\label{fig:KonfiguracjaPWM}
+	\end{figure}
+	
+	\subsection{Schemat połączenia z enkoderem}
+%Obecne w dokumencie do etapu II oraz III
+\section{Konstrukcja mechaniczna}
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{figures/20190410_135905.jpg}
+		\caption{Zdjęcie części mechanicznej nr 1}
+		\label{fig:Zdjęcie części mechanicznej nr 1}
+	\end{figure}
+	
+		\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{figures/20190410_135853.jpg}
+		\caption{Zdjęcie części mechanicznej nr 2}
+		\label{fig:Zdjęcie części mechanicznej nr 2}
+	\end{figure}
+
+%Obecne w dokumencie do etapu II oraz III
+\section{Opis działania programu}
+
+\subsection{Schemat działania programu}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\textwidth]{figures/diagramPWM.png}
+		\caption{Schemat działania programu}
+		\label{fig:diagramPWM}
+	\end{figure}
+
+\subsection{Funkcja obsługująca przerwanie timera 6}
+	\begin{lstlisting}[tabsize=2]
+	void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+	{
+		if(htim->Instance == TIM6)
+			HAL_ADC_Start_DMA(&hadc1, (uint32_t *)&adc_value, 1);
+	}
+	\end{lstlisting}
+
+\subsection{Funkcja obsługująca przerwanie USART}
+
+	\begin{lstlisting}[tabsize=2]
+	volatile uint8_t xvalue, yvalue, yprevious, xprevious;
+	volatile char xsign;
+	void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) 
+	{
+		axis = (char)(Received[nrAxis]);
+		sign = (char)(Received[nrSign]);
+		value = (uint8_t)(Received[nrValue]);
+		
+		if(axis == 'x')
+		{
+			xsign = sign;
+			xprevious = xvalue;
+			xvalue = value;
+		}
+		
+		if(axis == 'y')
+		{
+			yprevious = yvalue;
+			yvalue = value;
+			if(abs(value - xprevious) < 2)
+				yvalue = yprevious;
+			else if(value > 100)
+				yvalue = yprevious;
+			else if(value < 50)
+				yvalue = yprevious;
+		}
+		HAL_UART_Receive_DMA(&huart2, &Received, BUFSIZE);
+	}
+	\end{lstlisting}
+
+%Obecne w dokumencie do etapu II oraz III (jeśli coś zostało niezrealizowane)
+\section{Zadania niezrealizowane}
+Nie zostało zrealizowane przekazanie napędu z silnika i serwomechanizmu na mechanizm napędowy oraz na ten służący do skręcania. W pierwszym przypadku jest to spowodowane brakiem czasu, wynikający ze zbyt długim poszukiwaniem rozwiązania na problem przeniesienia napędu z silnika do przekładni, natomiast w drugim tym, że wał serwomechanizmu ma stępione zębatki co uniemożliwia przekazanie jakiejkolwiek siły na dalszy podzespół.
+
+%Obecne we wszystkich dokumentach
+\section{Podsumowanie}
+
+Udało się zrealizować większość zadań. Nastąpiły drobne zmiany koncepcyjne jak użycie potencjometru do regulacji prędkości obrotowej napędu. To będzie wymagać mniejszej ingerencji gdy będziemy projektować regulator PID.
+
+\newpage
+\addcontentsline{toc}{section}{Bibilografia}
+\bibliography{bibliografia}
+\bibliographystyle{plabbrv}
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
