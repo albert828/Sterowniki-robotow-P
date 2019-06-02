@@ -24,6 +24,7 @@ void sync()
 	 }
 	++bsync;
 }
+uint8_t yvalue = 0, xvalue = 0;
 // handling callback when reciving buffer is full
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 	 axis = (char)(Received[nrAxis]);
@@ -31,7 +32,12 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 	 value = (uint8_t)(Received[nrValue]);
 	 if(bsync < 10)
 		 sync();
-	 HAL_UART_Receive_IT(&huart2, Received, BUFSIZE);
+	 if(axis == 'y')
+		 yvalue = value;
+	 if(axis == 'x')
+		 xvalue = value;
+
+	 HAL_UART_Receive_DMA(&huart2, Received, BUFSIZE);
 }
 
 void SystemClock_Config(void);
@@ -44,7 +50,7 @@ int main(void)
   MX_GPIO_Init();
   MX_USART2_UART_Init();
 
-  HAL_UART_Receive_IT(&huart2, &Received, 1);
+  HAL_UART_Receive_DMA(&huart2, Received, 1);
 
   while (1)
   {
@@ -108,7 +114,7 @@ void Error_Handler(void)
 
 #ifdef  USE_FULL_ASSERT
 void assert_failed(char *file, uint32_t line)
-{ 
+{
 
 }
 #endif /* USE_FULL_ASSERT */

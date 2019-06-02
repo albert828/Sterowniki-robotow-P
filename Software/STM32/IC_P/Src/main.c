@@ -6,6 +6,7 @@
 #include "string.h"
 #include "stdio.h"
 #include "stdbool.h"
+#include <stdlib.h>
 
 #define BUFSIZE 3
 
@@ -37,27 +38,33 @@ void HAL_TIM_IC_CaptureCallback( TIM_HandleTypeDef *htim )
 	}
 }
 
-void sync()
-{
-	for(uint8_t i = 0; i < BUFSIZE; ++i)
-	 {
-		 uint8_t temp = Received[i];
-		 if( ( temp == 'x' ) || ( temp == 'y' ) )
-			 nrAxis = i;
-		 else if (( temp == '-' ) || ( temp == '+' ))
-			 nrSign = i;
-		 else
-			 nrValue = i;
-	 }
-	++bsync;
-}
 // handling callback when reciving buffer is full
+volatile uint8_t xvalue, yvalue, yprevious, xprevious;
+volatile char xsign;
+int flag1 = 1;
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 	 axis = (char)(Received[nrAxis]);
 	 sign = (char)(Received[nrSign]);
 	 value = (uint8_t)(Received[nrValue]);
-	 if(bsync < 10)
-		 sync();
+
+	 if(axis == 'x')
+	 {
+		 xsign = sign;
+		 xprevious = xvalue;
+		 xvalue = value;
+	 }
+
+	 if(axis == 'y')
+	 {
+		 yprevious = yvalue;
+		 yvalue = value;
+		 if(abs(value - xprevious) < 2)
+			 yvalue = yprevious;
+		 else if(value > 100)
+			 yvalue = yprevious;
+		 else if(value < 50)
+			 yvalue = yprevious;
+	 }
 	 HAL_UART_Receive_DMA(&huart2, &Received, BUFSIZE);
 }
 
@@ -80,7 +87,7 @@ int main(void)
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
 
-  HAL_UART_Receive_DMA(&huart2, &Received, 1);
+  HAL_UART_Receive_DMA(&huart2, &Received, BUFSIZE);
 
   while (1)
   {
