@@ -41,7 +41,6 @@ void HAL_TIM_IC_CaptureCallback( TIM_HandleTypeDef *htim )
 // handling callback when reciving buffer is full
 volatile uint8_t xvalue, yvalue, yprevious, xprevious;
 volatile char xsign;
-int flag1 = 1;
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 	 axis = (char)(Received[nrAxis]);
 	 sign = (char)(Received[nrSign]);
