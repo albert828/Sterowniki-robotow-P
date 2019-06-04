@@ -321,24 +321,58 @@ Interfejs jest wykorzystywany do komunikacji z modułem Wi-Fi (ESP8266). Moduł 
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=1\textwidth]{figures/20190410_135905.jpg}
-		\caption{Zdjęcie części mechanicznej nr 1}
-		\label{fig:Zdjęcie części mechanicznej nr 1}
+		\caption{Zdjęcie części mechanicznej}
+		\label{fig:Zdjęcie części mechanicznej}
 	\end{figure}
 	
 		\begin{figure}[H]
 		\centering
-		\includegraphics[width=1\textwidth]{figures/20190410_135853.jpg}
-		\caption{Zdjęcie części mechanicznej nr 2}
-		\label{fig:Zdjęcie części mechanicznej nr 2}
+		\includegraphics[width=1\textwidth]{figures/1.png}
+		\caption{Schemat mechaniczny 1/2}
+		\label{fig:Schemat mechaniczny}
 	\end{figure}
+	
+		\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{figures/2.png}
+		\caption{Schemat mechaniczny 2/2}
+		\label{fig:Schemat mechaniczny}
+	\end{figure}
+	
+	
+		\begin{table}[H]
+			\centering
+			\begin{tabular}{|l|c|} \hline
+				\textbf{Kolor} & \textbf{Opis} \\
+				\hline  Czerwony & Silniki  \\\hline
+				Niebieski & Przekładnia\\\hline
+				Żółty &  Elementy przeniesienia napędu\\
+				\hline
+			\end{tabular}
+			\caption{Legenda}
+			\label{tab:Legenda}
+		\end{table}
 
+\section{Regulator PID}
+
+\subsection{Wykres odpowiedzi skokowej}
+\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{figures/odp.png}
+		\caption{Odpowiedz skokowa}
+		\label{fig:Odpowiedz skokowa}
+	\end{figure}
+	
+	Na wykresie występuja bardzo duże oscylacje, które są spowodowane niedoskonałością wykonanego mechanizmu różnicowego oraz zbyt małą rozdzielczością odczytów z enkoderów. W związku z tym odpowiedź skokową przybliżono logarytmiczną linią trendu trendy i na jej podstawie za pomocą metody Zieglera Nicholsa wyliczono parametry K_{p}, K_{i} \hspace{0.1cm} oraz \hspace{0.1cm} K_{d}.
+	
+\subsection{Wyznaczenie parametrów PID}
 %Obecne w dokumencie do etapu II oraz III
 \section{Opis działania programu}
 
 \subsection{Schemat działania programu}
 	\begin{figure}[H]
 		\centering
-		%\includegraphics[width=0.8\textwidth]{figures/diagramPWM.png}
+		\includegraphics[width=0.8\textwidth]{figures/diagramPWM.png}
 		\caption{Schemat działania programu}
 		\label{fig:diagramPWM}
 	\end{figure}
@@ -452,9 +486,18 @@ Interfejs jest wykorzystywany do komunikacji z modułem Wi-Fi (ESP8266). Moduł 
 
 \newpage
 \addcontentsline{toc}{section}{Bibilografia}
-\bibliography{bibliografia}
 \bibliographystyle{plabbrv}
+\begin{thebibliography}{9}
 
+\bibitem{forbot1}
+  www.forbot.pl,
+  \emph{Kurs STM32 F1 HAL – #7 – liczniki (timery) w praktyce, PWM}
+  
+  \bibitem{forbot2}
+  www.forbot.pl,
+  \emph{Jak zaimplementować regulator PID dla silnika z enkoderem?}
+
+\end{thebibliography}
 
 \end{document}
 
