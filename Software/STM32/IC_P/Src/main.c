@@ -158,7 +158,7 @@ int main(void)
 	czasowa++;
 	if(czasowa == 350000)
 	{
-		__HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 255);
+		speed = 0;
 		czasowa = 0;
 	}
   }
