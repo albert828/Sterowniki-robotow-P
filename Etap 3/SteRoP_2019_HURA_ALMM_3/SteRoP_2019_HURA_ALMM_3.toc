@@ -22,7 +22,9 @@
 \contentsline {subsection}{\numberline {6.4}Funkcja obs\IeC {\l }uguj\IeC {\k a}ca przerwanie USART}{10}{subsection.6.4}% 
 \contentsline {subsection}{\numberline {6.5}Funkcja realizuj\IeC {\k a}ca jazd\IeC {\k e}}{11}{subsection.6.5}% 
 \contentsline {subsection}{\numberline {6.6}Funkcja realizuj\IeC {\k a}ca skr\IeC {\k e}canie}{11}{subsection.6.6}% 
-\contentsline {subsection}{\numberline {6.7}P\IeC {\k e}tla g\IeC {\l }\IeC {\'o}wna}{11}{subsection.6.7}% 
-\contentsline {section}{\numberline {7}Zadania niezrealizowane}{11}{section.7}% 
-\contentsline {section}{\numberline {8}Podsumowanie}{11}{section.8}% 
-\contentsline {section}{Bibilografia}{12}{section.8}% 
+\contentsline {subsection}{\numberline {6.7}Funkcja mapuj\IeC {\k a}ca warto\IeC {\'s}ci czasowe na warto\IeC {\'s}\IeC {\'c} zadan\IeC {\k a} regulatora PID}{11}{subsection.6.7}% 
+\contentsline {subsection}{\numberline {6.8}Funkcja przekierowuj\IeC {\k a}ca printf()}{11}{subsection.6.8}% 
+\contentsline {subsection}{\numberline {6.9}P\IeC {\k e}tla g\IeC {\l }\IeC {\'o}wna}{11}{subsection.6.9}% 
+\contentsline {section}{\numberline {7}Zadania niezrealizowane}{12}{section.7}% 
+\contentsline {section}{\numberline {8}Podsumowanie}{12}{section.8}% 
+\contentsline {section}{Bibilografia}{13}{section.8}% 

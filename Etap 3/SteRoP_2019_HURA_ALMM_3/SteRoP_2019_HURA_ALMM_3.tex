@@ -338,7 +338,7 @@ Interfejs jest wykorzystywany do komunikacji z modułem Wi-Fi (ESP8266). Moduł 
 \subsection{Schemat działania programu}
 	\begin{figure}[H]
 		\centering
-		%\includegraphics[width=0.8\textwidth]{figures/diagramPWM.png}
+		\includegraphics[width=0.8\textwidth]{figures/schemat.png}
 		\caption{Schemat działania programu}
 		\label{fig:diagramPWM}
 	\end{figure}
@@ -409,6 +409,10 @@ Interfejs jest wykorzystywany do komunikacji z modułem Wi-Fi (ESP8266). Moduł 
 			else if(value < 50)
 				yvalue = yprevious;
 		}
+		PIDSetpointSet(&pid, set_value);
+		PIDInputSet(&pid, speed);
+		PIDCompute(&pid);
+		pid_output = PIDOutputGet(&pid);
 		HAL_UART_Receive_DMA(&huart2, &Received, BUFSIZE);
 	}
 	\end{lstlisting}
@@ -431,8 +435,24 @@ Interfejs jest wykorzystywany do komunikacji z modułem Wi-Fi (ESP8266). Moduł 
 	}
 	\end{lstlisting}
 	
-	\subsection{Pętla główna}
+	\subsection{Funkcja mapująca wartości czasowe na wartość zadaną regulatora PID}
+	\begin{lstlisting}[tabsize=2]
+	long map(long x, long in_min, long in_max, long out_min, long out_max)
+	{
+		return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+	}
+	\end{lstlisting}
 	
+	\subsection{Funkcja przekierowująca printf()}
+	\begin{lstlisting}[tabsize=2]
+	int _write(int file, char *s, int len)
+	{
+		HAL_UART_Transmit_DMA(&huart2, (uint8_t*)s, len);
+		return len;
+	}
+	\end{lstlisting}
+	
+	\subsection{Pętla główna}
 	\begin{lstlisting}[tabsize=2]
 	while (1)
 	{
@@ -452,8 +472,23 @@ Interfejs jest wykorzystywany do komunikacji z modułem Wi-Fi (ESP8266). Moduł 
 
 \newpage
 \addcontentsline{toc}{section}{Bibilografia}
-\bibliography{bibliografia}
-\bibliographystyle{plabbrv}
+
+\begin{thebibliography}{9}
+	\bibitem{pa} Krzysztof Amborski, Andrzej Murusak:
+	\emph{Teoria sterowania w ćwiczeniach}, ('78)
+	
+	\bibitem{pa1} Józef Lisowski:
+	\emph{Podstawy automatyki}, (2015)
+	
+	\bibitem{pa1} Jerzy Brzózka:
+	\emph{Regulatory i układy automatyki}, (2004)
+	
+	\bibitem{pa1} Krzysztof Tchoń:
+	\emph{Manipulatory i roboty mobilne : modele, planowanie ruchu, sterowanie}, (2000)
+	
+	\bibitem{pa1} Stanisław Wszelak:
+	\emph{Administrowanie sieciowymi protokołami komunikacyjnymi}, (2015)
+\end{thebibliography}
 
 
 \end{document}
