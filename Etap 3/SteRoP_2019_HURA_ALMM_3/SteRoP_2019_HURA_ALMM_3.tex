@@ -321,16 +321,57 @@ Interfejs jest wykorzystywany do komunikacji z modułem Wi-Fi (ESP8266). Moduł 
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=1\textwidth]{figures/20190410_135905.jpg}
-		\caption{Zdjęcie części mechanicznej nr 1}
-		\label{fig:Zdjęcie części mechanicznej nr 1}
+		\caption{Zdjęcie części mechanicznej}
+		\label{fig:Zdjęcie części mechanicznej}
 	\end{figure}
 	
 		\begin{figure}[H]
 		\centering
-		\includegraphics[width=1\textwidth]{figures/20190410_135853.jpg}
-		\caption{Zdjęcie części mechanicznej nr 2}
-		\label{fig:Zdjęcie części mechanicznej nr 2}
+		\includegraphics[width=1\textwidth]{figures/1.png}
+		\caption{Schemat mechaniczny 1/2}
+		\label{fig:Schemat mechaniczny 1}
 	\end{figure}
+	
+		\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{figures/2.png}
+		\caption{Schemat mechaniczny 2/2}
+		\label{fig:Schemat mechaniczny 2}
+	\end{figure}
+	
+	
+		\begin{table}[H]
+			\centering
+			\begin{tabular}{|l|c|} \hline
+				\textbf{Kolor} & \textbf{Opis} \\
+				\hline  Czerwony & Silniki  \\\hline
+				Niebieski & Przekładnia\\\hline
+				Żółty &  Elementy przeniesienia napędu\\
+				\hline
+			\end{tabular}
+			\caption{Legenda}
+			\label{tab:Legenda}
+		\end{table}
+
+\section{Regulator PID}
+
+\subsection{Wykres odpowiedzi skokowej}
+\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{figures/odp.png}
+		\caption{Odpowiedz skokowa}
+		\label{fig:Odpowiedz skokowa}
+	\end{figure}
+	
+	Na wykresie występuja bardzo duże oscylacje, które są spowodowane niedoskonałością wykonanego mechanizmu różnicowego oraz zbyt małą rozdzielczością odczytów z enkoderów. W związku z tym odpowiedź skokową przybliżono linią trendu i na jej podstawie za pomocą metody Zieglera Nicholsa wyliczono parametry K_{p}, K_{i} \hspace{0.1cm} oraz \hspace{0.1cm} K_{d}.
+	
+\subsection{Wyznaczenie parametrów PID}
+
+\hspace{-0.55cm} k = \Delta wy / \Delta we = \frac {0.01923}{0.01515} \ = 1.2693 \approx 1.27 \newline
+
+\hspace{-0.55cm} K_{p} = 0.6 \ast k \ = 0.762 \newline
+K_{i} = 2 \ast \frac{K_{p}}{P_{u}} \ = 1.879 \newline
+K_{d} = \frac{K_{p}\ast P_{u}}{8} \ = 0.086 \newline
 
 %Obecne w dokumencie do etapu II oraz III
 \section{Opis działania programu}
@@ -490,6 +531,7 @@ Interfejs jest wykorzystywany do komunikacji z modułem Wi-Fi (ESP8266). Moduł 
 	\emph{Administrowanie sieciowymi protokołami komunikacyjnymi}, (2015)
 \end{thebibliography}
 
+\end{thebibliography}
 
 \end{document}
 
