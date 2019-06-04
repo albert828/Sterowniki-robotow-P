@@ -250,8 +250,6 @@ Interfejs jest wykorzystywany do komunikacji z modułem Wi-Fi (ESP8266). Moduł 
 		\centering
 		\begin{tabular}{|l|c|} 
 			\hline
-			\textbf{Oś X} & \\
-			\hline
 			\textbf{Parametr} & Wartość \\
 			\hline
 			\hline  \textbf{Etykieta}&x  \\\hline
@@ -269,8 +267,6 @@ Interfejs jest wykorzystywany do komunikacji z modułem Wi-Fi (ESP8266). Moduł 
 	\begin{table}[H]
 		\centering
 		\begin{tabular}{|l|c|} 
-			\hline
-			\textbf{Oś Y} & \\
 			\hline
 			\textbf{Parametr} & Wartość \\
 			\hline
@@ -304,17 +300,21 @@ Interfejs jest wykorzystywany do komunikacji z modułem Wi-Fi (ESP8266). Moduł 
 		\label{fig:Servo}
 	\end{figure}
 	
-	\subsection{Schemat połączenia z silnikiem}
-	Za pomocą potencjometru regulujemy wypełnienie sygnału PWM. Sygnał ten jest wzmacniany za pomocą tranzystora NPN i przekazywany do silnika DC.
-	
+	\subsection{Schemat połączenia z silnikiem}	
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.8\textwidth]{figures/pwm.png}
-		\caption{Schemat poglądowy regulacji prędkości obrotowej silnika}
+		\includegraphics[width=0.8\textwidth]{figures/silnik.jpg}
+		\caption{Schemat regulacji prędkości obrotowej silnika}
 		\label{fig:KonfiguracjaPWM}
 	\end{figure}
 	
 	\subsection{Schemat połączenia z enkoderem}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\textwidth]{figures/enkoder.png}
+		\caption{Schemat połączenia mikrokontrolera z enkoderem}
+		\label{fig:Enkoder}
+	\end{figure}
 %Obecne w dokumencie do etapu II oraz III
 \section{Konstrukcja mechaniczna}
 

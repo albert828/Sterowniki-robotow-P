@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.3.20)  4 JUN 2019 00:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.3.20)  4 JUN 2019 15:29
 entering extended mode
 **./SteRoP_2019_HURA_ALMM_3.tex
 (SteRoP_2019_HURA_ALMM_3.tex
@@ -971,94 +971,104 @@ l.226 \section
 <figures/uart.png, id=185, 628.14674pt x 380.01974pt>
 File: figures/uart.png Graphic file (type png)
 <use figures/uart.png>
-Package pdftex.def Info: figures/uart.png  used on input line 294.
+Package pdftex.def Info: figures/uart.png  used on input line 290.
 (pdftex.def)             Requested size: 364.19667pt x 220.33621pt.
  [6pdfTeX warning (ext4): destination with the same identifier (name{table.5}) 
 has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.298 	
+l.294 	
        pdfTeX warning (ext4): destination with the same identifier (name{table.
 6}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.298 	
+l.294 	
        pdfTeX warning (ext4): destination with the same identifier (name{table.
 7}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.298 	
+l.294 	
        pdfTeX warning (ext4): destination with the same identifier (name{table.
 8}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.298 	
+l.294 	
        ]
 <figures/servo.png, id=195, 482.40225pt x 268.00125pt>
 File: figures/servo.png Graphic file (type png)
 <use figures/servo.png>
-Package pdftex.def Info: figures/servo.png  used on input line 302.
+Package pdftex.def Info: figures/servo.png  used on input line 298.
 (pdftex.def)             Requested size: 364.19667pt x 202.34174pt.
-<figures/pwm.png, id=196, 569.12625pt x 478.03593pt>
-File: figures/pwm.png Graphic file (type png)
-<use figures/pwm.png>
-Package pdftex.def Info: figures/pwm.png  used on input line 312.
-(pdftex.def)             Requested size: 364.19667pt x 305.92006pt.
+<figures/silnik.jpg, id=196, 941.5175pt x 593.21625pt>
+File: figures/silnik.jpg Graphic file (type jpg)
+<use figures/silnik.jpg>
+Package pdftex.def Info: figures/silnik.jpg  used on input line 306.
+(pdftex.def)             Requested size: 364.19667pt x 229.47064pt.
  [7pdfTeX warning (ext4): destination with the same identifier (name{figure.4})
  has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.316 	
+l.310 	
        pdfTeX warning (ext4): destination with the same identifier (name{figure
 .5}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.316 	
+l.310 	
         <./figures/uart.png> <./figures/servo.png>]
-<figures/20190410_135905.jpg, id=205, 728.4816pt x 409.7709pt>
+<figures/enkoder.png, id=205, 437.2335pt x 274.626pt>
+File: figures/enkoder.png Graphic file (type png)
+<use figures/enkoder.png>
+Package pdftex.def Info: figures/enkoder.png  used on input line 314.
+(pdftex.def)             Requested size: 364.19667pt x 228.75665pt.
+<figures/20190410_135905.jpg, id=206, 728.4816pt x 409.7709pt>
 File: figures/20190410_135905.jpg Graphic file (type jpg)
 <use figures/20190410_135905.jpg>
 Package pdftex.def Info: figures/20190410_135905.jpg  used on input line 323.
 (pdftex.def)             Requested size: 455.24411pt x 256.07492pt.
-<figures/20190410_135853.jpg, id=206, 661.2705pt x 372.00983pt>
-File: figures/20190410_135853.jpg Graphic file (type jpg)
-<use figures/20190410_135853.jpg>
-Package pdftex.def Info: figures/20190410_135853.jpg  used on input line 330.
-(pdftex.def)             Requested size: 455.24411pt x 256.10806pt.
  [8pdfTeX warning (ext4): destination with the same identifier (name{figure.6})
  has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.334 
+l.327 	
+       pdfTeX warning (ext4): destination with the same identifier (name{figure
+.7}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.327 	
+        <./figures/silnik.jpg> <./figures/enkoder.png>]
+<figures/20190410_135853.jpg, id=214, 661.2705pt x 372.00983pt>
+File: figures/20190410_135853.jpg Graphic file (type jpg)
+<use figures/20190410_135853.jpg>
+Package pdftex.def Info: figures/20190410_135853.jpg  used on input line 330.
+(pdftex.def)             Requested size: 455.24411pt x 256.10806pt.
+ [9pdfTeX warning (ext4): destination with the same identifier (name{figure.8})
+ has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.345 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
-7}) has been already used, duplicate ignored
+9}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.334 
-       <./figures/pwm.png> <./figures/20190410_135905.jpg>] [9pdfTeX warning (e
-xt4): destination with the same identifier (name{figure.8}) has been already us
-ed, duplicate ignored
+l.345 
+       <./figures/20190410_135905.jpg> <./figures/20190410_135853.jpg>]
+[10pdfTeX warning (ext4): destination with the same identifier (name{figure.10}
+) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.375 				speed 
-                = (period1 <= 50) ? (255 - map(period1, 20, 50, 0, 255)) : 0;pd
-fTeX warning (ext4): destination with the same identifier (name{figure.9}) has 
-been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.375 				speed 
-                = (period1 <= 50) ? (255 - map(period1, 20, 50, 0, 255)) : 0; <
-./figures/20190410_135853.jpg>] [10] [11] (SteRoP_2019_HURA_ALMM_3.bbl
+l.404 			yvalue 
+                = value;] [11] (SteRoP_2019_HURA_ALMM_3.bbl
 
 LaTeX Warning: Empty `thebibliography' environment on input line 3.
 
@@ -1075,13 +1085,13 @@ Package rerunfilecheck Info: File `SteRoP_2019_HURA_ALMM_3.out' has not changed
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 459.
  ) 
 Here is how much of TeX's memory you used:
- 14412 strings out of 493801
- 196420 string characters out of 3158049
- 579372 words of memory out of 3000000
- 17831 multiletter control sequences out of 15000+200000
+ 14419 strings out of 493801
+ 196563 string characters out of 3158049
+ 591372 words of memory out of 3000000
+ 17836 multiletter control sequences out of 15000+200000
  19861 words of font info for 50 fonts, out of 3000000 for 9000
  625 hyphenation exceptions out of 8191
- 33i,9n,51p,541b,1878s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 33i,9n,51p,541b,1880s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\Papa Smerf\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dp
 i600\tcrm0900.pk> <C:\Users\Papa Smerf\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour
 /jknappen/ec/dpi600\ecrm0900.pk> <C:\Users\Papa Smerf\AppData\Local\MiKTeX\2.9\
@@ -1099,9 +1109,9 @@ x2074.pk> <C:\Users\Papa Smerf\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappe
 n/ec/dpi600\eccc1440.pk> <C:\Users\Papa Smerf\AppData\Local\MiKTeX\2.9\fonts/pk
 /ljfour/jknappen/ec/dpi600\eccc1728.pk><E:/Programy/Miktex/fonts/type1/public/a
 msfonts/cm/cmsy9.pfb>
-Output written on SteRoP_2019_HURA_ALMM_3.pdf (13 pages, 2969506 bytes).
+Output written on SteRoP_2019_HURA_ALMM_3.pdf (13 pages, 2492766 bytes).
 PDF statistics:
- 805 PDF objects out of 1000 (max. 8388607)
- 134 named destinations out of 1000 (max. 500000)
- 257 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 806 PDF objects out of 1000 (max. 8388607)
+ 135 named destinations out of 1000 (max. 500000)
+ 262 words of extra memory for PDF output out of 10000 (max. 10000000)
 
