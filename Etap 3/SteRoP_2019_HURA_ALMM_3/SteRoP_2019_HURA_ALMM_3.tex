@@ -363,7 +363,7 @@ Interfejs jest wykorzystywany do komunikacji z modułem Wi-Fi (ESP8266). Moduł 
 		\label{fig:Odpowiedz skokowa}
 	\end{figure}
 	
-	Na wykresie występuja bardzo duże oscylacje, które są spowodowane niedoskonałością wykonanego mechanizmu różnicowego oraz zbyt małą rozdzielczością odczytów z enkoderów. W związku z tym odpowiedź skokową przybliżono linią trendu i na jej podstawie za pomocą metody Zieglera Nicholsa wyliczono parametry K_{p}, K_{i} \hspace{0.1cm} oraz \hspace{0.1cm} K_{d}.
+	Na wykresie występują bardzo duże oscylacje, które są spowodowane niedoskonałością wykonanego mechanizmu różnicowego oraz zbyt małą rozdzielczością odczytów z enkoderów. W związku z tym odpowiedź skokową przybliżono linią trendu i na jej podstawie za pomocą II metody Zieglera - Nicholsa wyliczono parametry K_{p}, K_{i} \hspace{0.1cm} oraz \hspace{0.1cm} K_{d}.
 	
 \subsection{Wyznaczenie parametrów PID}
 
@@ -379,7 +379,7 @@ K_{d} = \frac{K_{p}\ast P_{u}}{8} \ = 0.086 \newline
 \subsection{Schemat działania programu}
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.8\textwidth]{figures/schemat.png}
+		\includegraphics[width=0.8\textwidth]{figures/diagramPWM.png}
 		\caption{Schemat działania programu}
 		\label{fig:diagramPWM}
 	\end{figure}
@@ -503,12 +503,12 @@ K_{d} = \frac{K_{p}\ast P_{u}}{8} \ = 0.086 \newline
 	\end{lstlisting}
 
 %Obecne w dokumencie do etapu II oraz III (jeśli coś zostało niezrealizowane)
-\section{Zadania niezrealizowane}
+%\section{Zadania niezrealizowane}
 
 
 %Obecne we wszystkich dokumentach
 \section{Podsumowanie}
-
+Udało się zrealizować wszystkie założenia projektowe. Jedynym elementem w projekcie, który mógłby być lepszy to rozdzielczość odczytów z enkoderów, aby działanie regulatora PID było bardziej płynne \newline i dokładne.
 
 
 \newpage
@@ -529,7 +529,6 @@ K_{d} = \frac{K_{p}\ast P_{u}}{8} \ = 0.086 \newline
 	
 	\bibitem{pa1} Stanisław Wszelak:
 	\emph{Administrowanie sieciowymi protokołami komunikacyjnymi}, (2015)
-\end{thebibliography}
 
 \end{thebibliography}
 
