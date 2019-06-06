@@ -58,10 +58,10 @@ void HAL_TIM_IC_CaptureCallback( TIM_HandleTypeDef *htim )
 			period1 = __HAL_TIM_GET_COMPARE(&htim5, TIM_CHANNEL_1);
 			__HAL_TIM_SET_COUNTER(&htim5, 0);
 			flag1 = 1;
-			speed = (period1 <= 40 ) ? (255 - map(period1, 20, 50, 0, 255)) : 0;
+			// speed = (period1 <= 40 ) ? (255 - map(period1, 20, 50, 0, 255)) : 0;
 		}
-		sampleTimeSeconds = period1/1000.0;
-		PIDInit(&pid, kp, ki, kd, sampleTimeSeconds, minOutput, maxOutput, mode, control);
+		//sampleTimeSeconds = period1/1000.0;
+		//PIDInit(&pid, kp, ki, kd, sampleTimeSeconds, minOutput, maxOutput, mode, control);
 	}
 }
 
@@ -92,12 +92,12 @@ void HAL_TIM_IC_CaptureCallback( TIM_HandleTypeDef *htim )
  		 else if(value < 0)
  			 yvalue = yprevious;
  	 }
- 	 set_value = xvalue;
- 			PIDSetpointSet(&pid, set_value);
- 		    PIDInputSet(&pid, speed);
- 		    PIDCompute(&pid);
+ 	 //set_value = xvalue;
+ 		//	PIDSetpointSet(&pid, set_value);
+ 		  //  PIDInputSet(&pid, speed);
+ 		  // // PIDCompute(&pid);
  		    //PIDOutputGet(&pid);
- 		    pid_output = PIDOutputGet(&pid);
+ 		   // pid_output = PIDOutputGet(&pid);
  	 HAL_UART_Receive_DMA(&huart2, &Received, BUFSIZE);
  }
 
@@ -106,7 +106,7 @@ uint8_t i = 180;
 void Jazda()
  {
 
-		  __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 255 - pid.output);//255 - pid.output
+		  __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 255- xvalue);//255 - pid.output
 
  }
 
@@ -147,20 +147,20 @@ int main(void)
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
 
   HAL_UART_Receive_DMA(&huart2, &Received, BUFSIZE);
-  PIDInit(&pid, kp, ki, kd, sampleTimeSeconds, minOutput, maxOutput, mode, control);
-  PIDSetpointSet(&pid, set_value);
+  //PIDInit(&pid, kp, ki, kd, sampleTimeSeconds, minOutput, maxOutput, mode, control);
+  //PIDSetpointSet(&pid, set_value);
   //PIDInputSet(&pid, speed);
 
   while (1)
   {
 	  Jazda();
 	Skrecanie();
-	czasowa++;
-	if(czasowa == 350000)
-	{
-		speed = 0;
-		czasowa = 0;
-	}
+	//czasowa++;
+	//if(czasowa == 350000)
+	//{
+		//speed = 0;
+		//czasowa = 0;
+	//}
   }
 }
 
